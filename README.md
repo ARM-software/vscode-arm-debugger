@@ -2,68 +2,110 @@
 
 ## Overview
 
-The **Arm Debugger** extension provides access to the Arm Debugger for Visual Studio Code, implementing the Microsoft Debug Adapter Protocol. Arm Debugger supports connections to physical targets, either via external debug probes such as Arm's ULINK™ family of debug probes, or via on-board low-cost debugging such as CMSIS-DAP based debug probes.
+The **Arm Debugger** extension provides access to the Arm Debugger engine for Visual Studio Code by implementing the [Microsoft Debug Adapter Protocol (DAP)](https://microsoft.github.io/debug-adapter-protocol//). The Arm Debugger engine supports connections to physical targets, either through external debug probes such as the Arm's ULINK™ family of debug probes, or through on-board low-cost debugging such as CMSIS-DAP based debug probes.
 
-### Arm Debugger supports
-- Loading images (e.g. .elf, .axf, .bin) and debug information as per the DWARF debug information standard up to and including version 5
-- Running images
-- Setting breakpoints
-- Source and instruction stepping
-- Accessing variables and registers
-- Viewing the content of memory
-- Access to [CLI](https://developer.arm.com/documentation/101471/2023-0/Arm-Debugger-commands) via Debug Console
+### Supported features
 
-### Debug Configuration Support
-The Arm Debugger for Visual Studio Code supports debug connections based on:
+The Arm Debugger extension allows you to:
 
-- [CMSIS-Pack Debug Setup](https://open-cmsis-pack.github.io/Open-CMSIS-Pack-Spec/main/html/coresight_setup.html)
-- The integrated [Debug Configuration Database](https://developer.arm.com/documentation/101470/2023-0/DTSL/Arm-Development-Studio-configuration-database)
+- Load images (for example, .elf, .axf, or .bin files) and debug information as per the DWARF Debugging Information Format Standard, up to and including version 5
+- Run images
+- Set breakpoints
+- Do source and instruction stepping
+- Access variables and registers
+- View the content of memory
+- Access the [CLI](https://developer.arm.com/documentation/101471/2023-0/Arm-Debugger-commands) using the Debug Console
 
-### Supported Processor and Architecture
-- Armv6-M Architecture
+### Debug configuration support
+
+The Arm Debugger engine supports debug connections based on:
+
+- The [debug setup with CMSIS-Pack](https://open-cmsis-pack.github.io/Open-CMSIS-Pack-Spec/main/html/coresight_setup.html)
+- The integrated [configuration database (configdb)](https://developer.arm.com/documentation/101470/2023-0/DTSL/Arm-Development-Studio-configuration-database)
+
+### Supported architectures and processors
+
+- Armv6-M architecture
     - Cortex-M0, Cortex-M0+, Cortex-M1, Arm SecurCore™ SC000
-- Armv7-M Architecture
+- Armv7-M architecture
     - Cortex-M3, Cortex-M4, Cortex-M7, Arm SecurCore™ SC300
-- Armv8-M Architecture
+- Armv8-M architecture
     - Cortex-M23, Cortex-M33, Cortex-M35P
-- Armv8.1-M Architecture
+- Armv8.1-M architecture
     - Cortex-M55, Cortex-M85
 
 ### Supported debug probes
+
 - [Arm ULINK family](https://www.arm.com/products/development-tools/debug-probes/ulink)
-- ST Microelectronics ST-Link
+- ST-LINK from STMicroelectronics
 - Probes based on the [CMSIS-DAP](https://arm-software.github.io/CMSIS_5/latest/DAP/html/index.html) debug adapter protocol v1.x and v2.x
 
-## Status
+## Arm Debugger extension pre-release
 
-The Arm Debugger extension is currently a preview, with a limited subset of debug features exposed in the VS Code user interface. Additional features are available through the command line. At this stage, we recommend using Arm Debugger through the [Keil Studio Extension Pack pre-release channel](https://marketplace.visualstudio.com/items?itemName=Arm.keil-studio-pack) because the extension pack provides an easy way to get started. Using Arm Debugger as a standalone extension is possible and requires additional configuration.
+The **Arm Debugger** extension is currently delivered as a pre-release, with a limited subset of debug features exposed in the Visual Studio Code user interface. Additional features are available with the command line. 
 
-Capabilities of Arm Debugger that are not yet exposed in Visual Studio Code include:
+For now, we recommend using the **Arm Debugger** extension version that is included in the **Keil Studio Pack** pre-release. The **Keil Studio Pack** provides an easy way to set up your development environment. You can also use the **Arm Debugger** extension as standalone, but this requires additional configuration.
+
+Some capabilities of the Arm Debugger engine that are not yet exposed in Visual Studio Code include:
+
 - CoreSight trace
 - Symmetric and asymmetric multicore debug
 - RTOS awareness
 
-## Install and get started with the Arm Debugger extension and dependencies
+## Install the extension
 
-1. We recommend installing Arm Debugger as part of the [Keil Studio extension pack](https://marketplace.visualstudio.com/items?itemName=Arm.keil-studio-pack). The Arm Debugger extension is included as a dependency.
+We recommend installing the **Arm Debugger** extension that is included in the **Keil Studio Pack** pre-release. Install the pack to get access to the **Arm Debugger** extension.
 
-1. Switch to the **pre-release channel** of the Keil Studio extension.
+1. In Visual Studio Code desktop, click the **Extensions** icon ![Extensions icon](./docs/images/extensions-icon.png) in the Activity Bar to open the **Extensions** view.
 
-1. Clone one of the project from [Hello World Example projects](https://github.com/Arm-Examples#hello-world-examples). The example contains a `vcpkg-configuration.json` manifest file, which describes the required dependencies of the example project.
+1. Search for **Keil Studio Pack**.
 
-1. Install Arm Debugger by adding following entry to `vcpkg-configuration.json` manifest file in `requires` section:
-    ```"arm:debuggers/arm/armdbg": "^6.0.0"```
+1. Click the arrow next to the **Install** button and select **Install Pre-Release Version**.
 
-1. The **Arm Environment Manager** will automatically use the `vcpkg-configuration.json` file to locate and install the required tools dependencies for the example project, including the Arm Debugger engine. Tools dependencies are made available on the path.
+    ![Install pre-release version](./docs/images/install-pre-release.png)
 
+1. Clone one of the [Hello world examples](https://github.com/Arm-Examples#hello-world-examples). 
 
-## Use of Arm Debugger
+    Each example contains a `vcpkg-configuration.json` manifest file that describes the tools you need to work with the example project.
 
-1. Build the project by opening `CMSIS` panel and click `Build` button. Optionally you can run `CMSIS Build` task from `Tasks: Run Task` in `Command Palette (CTRL+Shift+P)`.
+1. Go to the **Explorer** view ![Explorer icon](./docs/images/explorer-icon.png) and open the `vcpkg-configuration.json` manifest file.
 
-1. Connect your board and select it in [Device Manager](https://marketplace.visualstudio.com/items?itemName=Arm.device-manager) panel. This extension is installed as part of [Keil Studio extension pack](https://marketplace.visualstudio.com/items?itemName=Arm.keil-studio-pack).
+1. To install the Arm Debugger engine, add the following line in the `"requires":` section of the manifest file:
 
-1. Create a flash task in `.vscode/tasks.json` using `Command Palette (CTRL+Shift+P)` -> `Tasks: Configure Task` -> `arm-debugger.flash: Flash Device`. It will create following entry:
+    ``` "arm:debuggers/arm/armdbg": "6.0.1" ```
+
+    The **Arm Environment Manager** extension contained in the **Keil Studio Pack** uses the `vcpkg-configuration.json` file to locate and install the required tools for the example project, including the Arm Debugger engine. Once installed, tools are available on the PATH.
+
+    **Note**: You can automatically download new patch versions by using `~` in front of the version. For example: `"~6.0.1"`.
+
+## Use the Arm Debugger extension
+
+You need the **Arm CMSIS csolution** and the **Arm Device Manager** extensions that come with the **Keil Studio Pack** in order to run and debug projects on your board.
+
+### Run the project on your board 
+
+1. Go to the **CMSIS** view ![CMSIS icon](./docs/images/cmsis-icon.png).
+
+1. Click the **Build** button ![Build button](./docs/images/build-button.png) in the **ACTIONS** panel to build the project.
+
+    You can also run the `CMSIS Build` task from the Command Palette (Ctrl+Shift+P on Windows or Cmd+Shift+P on macOS).
+
+1. Connect your board over USB.
+
+    The board is detected and a pop-up message displays in the bottom right-hand corner of the screen.
+
+1. Click **OK** in the pop-up message.
+
+    Alternatively, you can go to the **Device Manager** view ![Device Manager icon](./docs/images/device-manager-icon.png), click the **Add Device** button, then select your board in the drop-down list that displays at the top of the window.
+
+1. Check that your board is connected in the **Device Manager** view.
+
+1. Open the Command Palette and search for `Tasks: Configure Task` then select it.
+
+1. Select the `arm-debugger.flash: Flash Device` task.
+
+    This adds the following lines in the `tasks.json` file that is stored in the `.vscode` folder of the project.
+
     ```
     {
 		"type": "arm-debugger.flash",
@@ -75,13 +117,24 @@ Capabilities of Arm Debugger that are not yet exposed in Visual Studio Code incl
 	}
     ```
 
-1. Deploy the application binary on the board by running the flash task: `Command Palette (CTRL+Shift+P)` -> `Tasks: Run Task` -> `Flash Device using Arm Debugger` and select correct device name and CPU when prompted.
+1. Click the **Run** button ![Run button](./docs/images/run-button.png) in the **ACTIONS** panel to deploy the application binary to the board, then select the correct device name and CPU if prompted to do so.
 
-1. To debug a program on the board create an `Arm Debug` configuration in `.vscode/launch.json` file. A file can be created by going into `Run and Debug` panel and selecting `create a launch.json file` -> `ARM Debugger` option. It will create following entry:
+    You can also do the same from the Command Palette:
+
+    1. Open the Command Palette and search for `Tasks: Run Task` then select it.
+
+    1. Select `arm-debugger.flash: Flash Device` in the drop-down list.
+
+1. For boards with multiple cores, you must select the appropriate processor for your project in the [Select a processor]{.ui} drop-down list that displays at the top of the window.
+
+### Debug the project on your board
+
+1. To debug a project, create an `Arm Debugger` configuration in the `launch.json` file that is stored in the `.vscode` folder of the project. Add the following lines inside `"configurations":[`:
+
     ```
     {
-		"name": "Arm Debug",
-		"type": "arm-debug",
+		"name": "Arm Debugger",
+		"type": "arm-debugger",
         "request": "launch",
 		"serialNumber": "${command:device-manager.getSerialNumber}",
 		"program": "${command:embedded-debug.getApplicationFile}",
@@ -89,18 +142,22 @@ Capabilities of Arm Debugger that are not yet exposed in Visual Studio Code incl
 	}
     ```
 
-1. To start a debug session open `Run & Debug (ctrl+Shift+D)` panel and select `Arm Debug` configuration.
+1. To start a debug session, go to the **RUN AND DEBUG** view ![Run and Debug icon](./docs/images/run-debug-icon.png) and select the `Arm Debugger` configuration in the list ![Configuration](./docs/images/start-debugging-button.png), then click the **Start Debugging** button.
 
-## Configuring Arm Debugger
+1. For boards with multiple cores, you must select the appropriate processor for your project in the [Select a processor]{.ui} drop-down list that displays at the top of the window.
 
-Visual Studio Code uses launch configuration files to provide settings to the debugger. Example `.vscode/launch.json` file:
+## Configure Arm Debugger
+
+Visual Studio Code uses launch configuration files to provide settings to the debugger.
+
+Example of a `launch.json` file:
 
 ```
 {
         "configurations": [
         {
-            "name": "Arm Debug",
-            "type": "arm-debug",
+            "name": "Arm Debugger",
+            "type": "arm-debugger",
             "request": "launch",
             "serialNumber": "${command:device-manager.getSerialNumber}",
             "program": "${command:embedded-debug.getApplicationFile}",
@@ -117,4 +174,4 @@ Visual Studio Code uses launch configuration files to provide settings to the de
 
 ## Submit feedback
 
-To submit feedback while the Arm Debugger extension is a preview, please [open a bug report or a feature request](https://github.com/Arm-Software/vscode-arm-debugger/issues/new/choose).
+To submit feedback on the Arm Debugger extension pre-release version, please [open a bug report or a feature request](https://github.com/Arm-Software/vscode-arm-debugger/issues/new/choose).
