@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.3.0
+- Support for Eclipse CDT-Cloud Peripheral Inspector
+- Display CPU registers in separate Registers view
+
 ## 0.2.0
 - Debug type changed to `arm-debugger`
 - `arm.environment-manager` extension added as dependency
