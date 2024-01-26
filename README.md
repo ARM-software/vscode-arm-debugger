@@ -2,7 +2,7 @@
 
 ## Overview
 
-The **Arm Debugger** extension provides access to the Arm Debugger engine for Visual Studio Code by implementing the [Microsoft Debug Adapter Protocol (DAP)](https://microsoft.github.io/debug-adapter-protocol//). The Arm Debugger engine supports connections to physical targets, either through external debug probes such as the Arm's ULINK™ family of debug probes, or through on-board low-cost debugging such as CMSIS-DAP based debug probes.
+The Arm® Debugger extension provides access to the Arm Debugger engine for Visual Studio Code by implementing the [Microsoft Debug Adapter Protocol (DAP)](https://microsoft.github.io/debug-adapter-protocol//). The Arm Debugger engine supports connections to physical targets, either through external debug probes such as the Arm's ULINK™ family of debug probes, or through on-board low-cost debugging such as CMSIS-DAP based debug probes.
 
 ### Supported features
 
@@ -26,9 +26,9 @@ The Arm Debugger engine supports debug connections based on:
 ### Supported architectures and processors
 
 - Armv6-M architecture
-    - Cortex-M0, Cortex-M0+, Cortex-M1, Arm SecurCore™ SC000
+    - Cortex®-M0, Cortex-M0+, Cortex-M1, Arm SecurCore® SC000
 - Armv7-M architecture
-    - Cortex-M3, Cortex-M4, Cortex-M7, Arm SecurCore™ SC300
+    - Cortex-M3, Cortex-M4, Cortex-M7, Arm SecurCore SC300
 - Armv8-M architecture
     - Cortex-M23, Cortex-M33, Cortex-M35P
 - Armv8.1-M architecture
@@ -40,29 +40,33 @@ The Arm Debugger engine supports debug connections based on:
 - ST-LINK from STMicroelectronics
 - Probes based on the [CMSIS-DAP](https://arm-software.github.io/CMSIS_5/latest/DAP/html/index.html) debug adapter protocol v1.x and v2.x
 
-## Arm Debugger extension pre-release
+## Arm Debugger extension preview
 
-The **Arm Debugger** extension is currently delivered as a pre-release, with a limited subset of debug features exposed in the Visual Studio Code user interface. Additional features are available with the command line. 
+The Arm Debugger extension is currently delivered as a preview, with a limited subset of debug features exposed in the Visual Studio Code user interface. Additional features are available with the command line. 
 
-For now, we recommend using the **Arm Debugger** extension version that is included in the **Keil Studio Pack** pre-release. The **Keil Studio Pack** provides an easy way to set up your development environment. You can also use the **Arm Debugger** extension as standalone, but this requires additional configuration.
+For now, we recommend using the Arm Debugger extension version that is included in the Arm Keil® Studio Pack pre-release. The Keil Studio Pack provides an easy way to set up your development environment. You can also use the Arm Debugger extension as standalone, but this requires additional configuration.
 
 Some capabilities of the Arm Debugger engine that are not yet exposed in Visual Studio Code include:
 
-- CoreSight trace
+- CoreSight™ trace
 - Symmetric and asymmetric multicore debug
 - RTOS awareness
 
 ## Install the extension
 
-We recommend installing the **Arm Debugger** extension that is included in the **Keil Studio Pack** pre-release. Install the pack to get access to the **Arm Debugger** extension.
+We recommend installing the Arm Debugger extension that is included in the Keil Studio Pack pre-release. Install the pack to get access to the Arm Debugger extension.
 
-1. In Visual Studio Code desktop, click the **Extensions** icon ![Extensions icon](./docs/images/extensions-icon.png) in the Activity Bar to open the **Extensions** view.
+1. In Visual Studio Code Desktop, click the **Extensions** icon ![Extensions icon](./docs/images/extensions-icon.png) in the Activity Bar to open the **Extensions** view.
 
-1. Search for **Keil Studio Pack**.
+1. Search for **Arm Keil Studio Pack** and select it in the list of available extensions.
 
-1. Click the arrow next to the **Install** button and select **Install Pre-Release Version**.
+    - If you did not have the official pack already installed, click the arrow next to the **Install** button and select **Install Pre-Release Version**.
 
     ![Install pre-release version](./docs/images/install-pre-release.png)
+
+    - If you have the official pack already installed, click the **Switch to Pre-Release Version** button on the welcome page that displays when you select the pack from the list.
+
+    ![Switch to pre-release version](./docs/images/install-pre-release-02.png)
 
 1. Clone one of the [Hello world examples](https://github.com/Arm-Examples#hello-world-examples). 
 
@@ -72,15 +76,15 @@ We recommend installing the **Arm Debugger** extension that is included in the *
 
 1. To install the Arm Debugger engine, add the following line in the `"requires":` section of the manifest file:
 
-    ``` "arm:debuggers/arm/armdbg": "6.0.1" ```
+    ``` "arm:debuggers/arm/armdbg": "6.0.2" ```
 
-    The **Arm Environment Manager** extension contained in the **Keil Studio Pack** uses the `vcpkg-configuration.json` file to locate and install the required tools for the example project, including the Arm Debugger engine. Once installed, tools are available on the PATH.
+    The Arm Environment Manager extension contained in the Keil Studio Pack uses the `vcpkg-configuration.json` file to locate and install the required tools for the example project, including the Arm Debugger engine. Once installed, tools are available on the PATH.
 
-    **Note**: You can automatically download new patch versions by using `~` in front of the version. For example: `"~6.0.1"`.
+    **Note**: You can automatically download new patch versions by using `~` in front of the version. For example: `"~6.0.2"`.
 
 ## Use the Arm Debugger extension
 
-You need the **Arm CMSIS csolution** and the **Arm Device Manager** extensions that come with the **Keil Studio Pack** in order to run and debug projects on your board.
+You need the Arm CMSIS csolution and the Arm Device Manager extensions that come with the Keil Studio Pack in order to run and debug projects on your board.
 
 ### Run the project on your board 
 
@@ -125,7 +129,7 @@ You need the **Arm CMSIS csolution** and the **Arm Device Manager** extensions t
 
     1. Select `arm-debugger.flash: Flash Device` in the drop-down list.
 
-1. For boards with multiple cores, you must select the appropriate processor for your project in the [Select a processor]{.ui} drop-down list that displays at the top of the window.
+1. For boards with multiple cores, you must select the appropriate processor for your project in the **Select a processor** drop-down list that displays at the top of the window.
 
 ### Debug the project on your board
 
@@ -144,7 +148,7 @@ You need the **Arm CMSIS csolution** and the **Arm Device Manager** extensions t
 
 1. To start a debug session, go to the **RUN AND DEBUG** view ![Run and Debug icon](./docs/images/run-debug-icon.png) and select the `Arm Debugger` configuration in the list ![Configuration](./docs/images/start-debugging-button.png), then click the **Start Debugging** button.
 
-1. For boards with multiple cores, you must select the appropriate processor for your project in the [Select a processor]{.ui} drop-down list that displays at the top of the window.
+1. For boards with multiple cores, you must select the appropriate processor for your project in the **Select a processor** drop-down list that displays at the top of the window.
 
 ## Configure Arm Debugger
 
@@ -174,4 +178,4 @@ Example of a `launch.json` file:
 
 ## Submit feedback
 
-To submit feedback on the Arm Debugger extension pre-release version, please [open a bug report or a feature request](https://github.com/Arm-Software/vscode-arm-debugger/issues/new/choose).
+To submit feedback on the Arm Debugger extension preview version, please [open a bug report or a feature request](https://github.com/Arm-Software/vscode-arm-debugger/issues/new/choose).

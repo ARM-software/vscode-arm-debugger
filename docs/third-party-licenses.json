@@ -54,5 +54,12 @@
         "spdx": "BSD-2-Clause",
         "url": "https://github.com/maxogden/websocket-stream",
         "license": "https://github.com/maxogden/websocket-stream/blob/master/LICENSE"
+    },
+    {
+        "name": "tree-kill",
+        "version": "1.2.2",
+        "spdx": "MIT",
+        "url": "https://github.com/pkrumins/node-tree-kill",
+        "license": "https://github.com/pkrumins/node-tree-kill/blob/master/LICENSE"
     }
 ]
