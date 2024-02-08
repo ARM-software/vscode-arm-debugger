@@ -1,1 +1,1 @@
-## Arm Debugger Third Party IP
+## Arm Debugger extension Third Party IP
