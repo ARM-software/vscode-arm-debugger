@@ -1,5 +1,8 @@
 # Change Log
 
+## 0.5.1
+- Fixes usage of `probe` detection for debug with `cdbEntry`.
+
 ## 0.5.0
 - Adds initial version of debug and run configuration GUI. Available through context menu for `launch.json` and `tasks.json` files.
 - Detects probe type based on given `serialNumber` if no `probe` option set in debug or in run configuration. Defaults to `CMSIS-DAP` if type not known.
