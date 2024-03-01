@@ -1,5 +1,16 @@
 # Change Log
 
+## 1.0.0
+- Removes preview status of the extension.
+- Adds new debug type `arm-debugger.fvp` to enable debug of Fixed Virtual Platforms. Works best in combination with `arm.virtual-hardware` extension.
+- Adds support for new debug type `arm-debugger.fvp` to debug configuration GUI.
+- Adds editing capabilities to `Registers` window.
+- Adds various enhancements and fixes to the debug and run configuration GUI.
+- Adds support for more configuration options to the debug and run configuration GUI.
+- Updates default Arm Debugger `launch` configuration to use new commands from related extensions.
+- Updates `programs` debug and run configuration option to accept a string with a comma-separated list of file paths.
+- Fixes run operation for applications with spaces in their path ([GH Issue #1](https://github.com/ARM-software/vscode-arm-debugger/issues/1)).
+
 ## 0.5.1
 - Fixes usage of `probe` detection for debug with `cdbEntry`.
 

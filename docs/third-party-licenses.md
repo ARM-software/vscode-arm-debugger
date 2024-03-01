@@ -1,11 +1,11 @@
 ## Arm Debugger extension Third Party IP
 
-Report prepared at : 2024-02-08 20:37:23
+Report prepared at : 2024-02-28 16:31:23
 
 | *Package* | *Version* | *Repository* | *License* |
 |---|---|---|---|
 |@fortawesome/fontawesome-free|6.5.1|https://github.com/FortAwesome/Font-Awesome|[MIT](https://github.com/FortAwesome/Font-Awesome/blob/6.x/LICENSE.txt)|
-|@vscode/codicons|0.0.32|https://github.com/microsoft/vscode-codicons|[MIT](https://github.com/microsoft/vscode-codicons/blob/main/LICENSE-CODE)|
+|@vscode/codicons|0.0.35|https://github.com/microsoft/vscode-codicons|[MIT](https://github.com/microsoft/vscode-codicons/blob/main/LICENSE-CODE)|
 |jsonc-parser|3.2.1|https://github.com/microsoft/node-jsonc-parser|[MIT](https://github.com/microsoft/node-jsonc-parser/blob/main/LICENSE.md)|
 |jszip|3.10.1|https://github.com/Stuk/jszip|[MIT](https://github.com/Stuk/jszip/blob/master/LICENSE.markdown)|
 |lodash.debounce|4.0.8|https://github.com/lodash/lodash|[MIT](https://github.com/Leonidas-from-XIV/node-xml2js/blob/master/LICENSE)|

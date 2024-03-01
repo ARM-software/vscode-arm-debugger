@@ -8,7 +8,7 @@
     },
     {
         "name": "@vscode/codicons",
-        "version": "0.0.32",
+        "version": "0.0.35",
         "spdx": "MIT",
         "url": "https://github.com/microsoft/vscode-codicons",
         "license": "https://github.com/microsoft/vscode-codicons/blob/main/LICENSE-CODE"
