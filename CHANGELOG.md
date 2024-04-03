@@ -1,6 +1,9 @@
 # Change Log
 
-## NEXT RELEASE
+## 1.1.1
+- Fixes previous version number in `CHANGELOG.md`.
+
+## 1.1.0
 - Debug and run configuration GUI enhancements and defect fixes.
 - Improves error handling of debug and run configuration GUI.
 - Changes debug and run configuration GUI to not automatically save changes. Use the Visual Studio Code [Auto Save](https://code.visualstudio.com/docs/editor/codebasics#_save-auto-save) feature instead.
