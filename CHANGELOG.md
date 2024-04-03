@@ -1,5 +1,17 @@
 # Change Log
 
+## NEXT RELEASE
+- Debug and run configuration GUI enhancements and defect fixes.
+- Improves error handling of debug and run configuration GUI.
+- Changes debug and run configuration GUI to not automatically save changes. Use the Visual Studio Code [Auto Save](https://code.visualstudio.com/docs/editor/codebasics#_save-auto-save) feature instead.
+- Includes `Arm Debugger` in command and task names to distinguish from other debug extensions.
+- Adds installation of required CMSIS [Device Family Packs](https://open-cmsis-pack.github.io/Open-CMSIS-Pack-Spec/main/html/cp_PackTutorial.html#createPack_DFP) for debug and run for standalone use of this extension.
+- Includes `arm.environment-manager` extension in this extension pack instead of being a dependency.
+- The following changes require Arm Debugger v6.1.1 or later:
+  - Adds `targetInitScript` to debug and to run configuration options.
+  - Adds `debugInitScript` to debug configuration options.
+  - Adds [`dbgconf`](https://open-cmsis-pack.github.io/Open-CMSIS-Pack-Spec/main/html/dbg_debug_sqns.html#dbg_sqns_dbgconf) to to debug and to run configuration options for CMSIS-Pack based hardware connections.
+
 ## 1.0.0
 - Removes preview status of the extension.
 - Adds new debug type `arm-debugger.fvp` to enable debug of Fixed Virtual Platforms. Works best in combination with `arm.virtual-hardware` extension.

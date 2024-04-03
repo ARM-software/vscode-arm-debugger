@@ -43,7 +43,7 @@
     },
     {
         "name": "primereact",
-        "version": "10.5.0",
+        "version": "10.5.1",
         "spdx": "MIT",
         "url": "https://github.com/primefaces/primereact",
         "license": "https://github.com/primefaces/primereact/blob/master/LICENSE.md"
@@ -78,28 +78,28 @@
     },
     {
         "name": "usb",
-        "version": "2.11.0",
+        "version": "2.12.1",
         "spdx": "MIT",
         "url": "https://github.com/node-usb/node-usb",
         "license": "https://github.com/node-usb/node-usb/blob/master/LICENSE"
     },
     {
         "name": "vscode-debugadapter",
-        "version": "1.51.0",
+        "version": "1.65.0",
         "spdx": "MIT",
         "url": "https://github.com/Microsoft/vscode-debugadapter-node",
         "license": "https://github.com/Microsoft/vscode-debugadapter-node/blob/master/License.txt"
     },
     {
         "name": "vscode-debugprotocol",
-        "version": "1.51.0",
+        "version": "1.65.0",
         "spdx": "MIT",
         "url": "https://github.com/Microsoft/vscode-debugadapter-node",
         "license": "https://github.com/Microsoft/vscode-debugadapter-node/blob/master/License.txt"
     },
     {
         "name": "vscode-extension-telemetry",
-        "version": "0.6.2",
+        "version": "0.9.2",
         "spdx": "MIT",
         "url": "https://github.com/microsoft/vscode-extension-telemetry",
         "license": "https://github.com/microsoft/vscode-extension-telemetry/blob/main/LICENSE"
