@@ -1,5 +1,10 @@
 # Change Log
 
+## 1.1.2
+- Fixes a bug where Arm Debugger extension may not detect the path of the Arm Debugger executable provided by Arm Environment Manager.
+- Fixes a sometimes empty `Configuration Database Entry` selection in the debug configuration GUI for debug type `arm-debugger.fvp`.
+- Fixes focus to `Debug Console` when launching debug.
+
 ## 1.1.1
 - Fixes previous version number in `CHANGELOG.md`.
 
