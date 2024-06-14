@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.2.1
+- Fixes a regression in the debug configuration GUI for Fixed Virtual Platforms.
+- Skips applying flash algorithm settings for Arm Debugger versions prior to v6.1.0.
+
 ## 1.2.0
 - Adds link to the latest [Arm Debugger Release Notes](https://developer.arm.com/documentation/109667/latest) to the extension README.
 - Adds initial version of the `Functions` window.
