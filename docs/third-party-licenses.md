@@ -1,6 +1,6 @@
 ## Arm Debugger extension Third Party IP
 
-Report prepared at : 2024-04-26 17:11:4
+Report prepared at : 2024-06-13 17:37:30
 
 | *Package* | *Version* | *Repository* | *License* |
 |---|---|---|---|
@@ -15,7 +15,7 @@ Report prepared at : 2024-04-26 17:11:4
 |react-dom|18.2.0|https://github.com/facebook/react|[MIT](https://github.com/facebook/react/blob/main/LICENSE)|
 |react-scroll|1.9.0|https://github.com/fisshy/react-scroll|[MIT](https://github.com/fisshy/react-scroll/blob/master/LICENSE)|
 |tree-kill|1.2.2|https://github.com/pkrumins/node-tree-kill|[MIT](https://github.com/pkrumins/node-tree-kill/blob/master/LICENSE)|
-|usb|2.12.1|https://github.com/node-usb/node-usb|[MIT](https://github.com/node-usb/node-usb/blob/master/LICENSE)|
+|usb|2.13.0|https://github.com/node-usb/node-usb|[MIT](https://github.com/node-usb/node-usb/blob/master/LICENSE)|
 |vscode-debugadapter|1.65.0|https://github.com/Microsoft/vscode-debugadapter-node|[MIT](https://github.com/Microsoft/vscode-debugadapter-node/blob/master/License.txt)|
 |vscode-debugprotocol|1.65.0|https://github.com/Microsoft/vscode-debugadapter-node|[MIT](https://github.com/Microsoft/vscode-debugadapter-node/blob/master/License.txt)|
 |vscode-extension-telemetry|0.9.6|https://github.com/microsoft/vscode-extension-telemetry|[MIT](https://github.com/microsoft/vscode-extension-telemetry/blob/main/LICENSE)|

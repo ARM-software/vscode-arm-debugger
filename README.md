@@ -9,6 +9,8 @@ The Arm Debugger extension provides access to the Arm Debugger engine for Visual
 - Physical targets. Either through external debug probes such as the Arm's ULINK™ family of debug probes, or through on-board low-cost debugging such as ST-Link or CMSIS-DAP based debug probes.
 - Virtual targets. Using Fixed Virtual Platform models (FVPs).
 
+See the [Arm Debugger Release Note](https://developer.arm.com/documentation/109667/latest) for an overview of each release.
+
 We recommend installing the [Keil Studio Pack](https://marketplace.visualstudio.com/items?itemName=Arm.keil-studio-pack) for Visual Studio Code Desktop to quickly set up your environment. You can then [import a solution example from keil.arm.com](https://developer.arm.com/documentation/108029/latest/Get-started-with-an-example-project/Import-a-solution-example), [download a μVision project from keil.arm.com](https://developer.arm.com/documentation/108029/latest/Get-started-with-an-example-project/Download-a-Keil--Vision-example), [create a solution from scratch](https://developer.arm.com/documentation/108029/latest/Arm-CMSIS-Solution-extension/Create-a-solution), or [convert an existing μVision project](https://developer.arm.com/documentation/108029/latest/Arm-CMSIS-Solution-extension/Convert-a-Keil--Vision-project-to-a-solution).
 
 The Arm Debugger extension works with the Arm CMSIS Solution (Identifier: `arm.cmsis-csolution`), the Arm Device Manager (Identifier: `arm.device-manager`), and the Arm Virtual Hardware (Identifier: `arm.virtual-hardware`) extensions.

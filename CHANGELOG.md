@@ -1,5 +1,13 @@
 # Change Log
 
+## 1.2.0
+- Adds link to the latest [Arm Debugger Release Notes](https://developer.arm.com/documentation/109667/latest) to the extension README.
+- Adds initial version of the `Functions` window.
+- Adds `eraseMode`, `verifyFlash`, and `flms` to the run configuration options and GUI to configure the use of [flash algorithms](https://open-cmsis-pack.github.io/Open-CMSIS-Pack-Spec/main/html/flashAlgorithm.html) from the selected CMSIS [Device Family Pack](https://open-cmsis-pack.github.io/Open-CMSIS-Pack-Spec/main/html/cp_PackTutorial.html#createPack_DFP).
+- Adds Arm Debugger Jython debug script imports to `PYTHONPATH` environment variable of active session. This allows intellisense support for these debugger scripts in combination with for example the [Microsoft Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python).
+- Adds error message in debug configuration GUI for Fixed Virtual Platforms if no models are detected.
+- Various fixes and improvements to the debug and run configuration GUI.
+
 ## 1.1.2
 - Fixes a bug where Arm Debugger extension may not detect the path of the Arm Debugger executable provided by Arm Environment Manager.
 - Fixes a sometimes empty `Configuration Database Entry` selection in the debug configuration GUI for debug type `arm-debugger.fvp`.
