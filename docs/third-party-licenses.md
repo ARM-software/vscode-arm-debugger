@@ -1,18 +1,18 @@
 ## Arm Debugger extension Third Party IP
 
-Report prepared at : 2024-06-13 17:37:30
+Report prepared at : 2024-07-23 10:24:29
 
 | *Package* | *Version* | *Repository* | *License* |
 |---|---|---|---|
 |@fortawesome/fontawesome-free|6.5.2|https://github.com/FortAwesome/Font-Awesome|[MIT](https://github.com/FortAwesome/Font-Awesome/blob/6.x/LICENSE.txt)|
-|@vscode/codicons|0.0.35|https://github.com/microsoft/vscode-codicons|[MIT](https://github.com/microsoft/vscode-codicons/blob/main/LICENSE-CODE)|
-|jsonc-parser|3.2.1|https://github.com/microsoft/node-jsonc-parser|[MIT](https://github.com/microsoft/node-jsonc-parser/blob/main/LICENSE.md)|
+|@vscode/codicons|0.0.36|https://github.com/microsoft/vscode-codicons|[MIT](https://github.com/microsoft/vscode-codicons/blob/main/LICENSE-CODE)|
+|jsonc-parser|3.3.1|https://github.com/microsoft/node-jsonc-parser|[MIT](https://github.com/microsoft/node-jsonc-parser/blob/main/LICENSE.md)|
 |jszip|3.10.1|https://github.com/Stuk/jszip|[MIT](https://github.com/Stuk/jszip/blob/master/LICENSE.markdown)|
 |lodash.debounce|4.0.8|https://github.com/lodash/lodash|[MIT](https://github.com/Leonidas-from-XIV/node-xml2js/blob/master/LICENSE)|
 |node-fetch|3.3.2|https://github.com/node-fetch/node-fetch|[MIT](https://github.com/node-fetch/node-fetch/blob/master/LICENSE.md)|
 |primereact|10.5.3|https://github.com/primefaces/primereact|[MIT](https://github.com/primefaces/primereact/blob/master/LICENSE.md)|
-|react|18.2.0|https://github.com/facebook/react|[MIT](https://github.com/facebook/react/blob/main/LICENSE)|
-|react-dom|18.2.0|https://github.com/facebook/react|[MIT](https://github.com/facebook/react/blob/main/LICENSE)|
+|react|18.3.1|https://github.com/facebook/react|[MIT](https://github.com/facebook/react/blob/main/LICENSE)|
+|react-dom|18.3.1|https://github.com/facebook/react|[MIT](https://github.com/facebook/react/blob/main/LICENSE)|
 |react-scroll|1.9.0|https://github.com/fisshy/react-scroll|[MIT](https://github.com/fisshy/react-scroll/blob/master/LICENSE)|
 |tree-kill|1.2.2|https://github.com/pkrumins/node-tree-kill|[MIT](https://github.com/pkrumins/node-tree-kill/blob/master/LICENSE)|
 |usb|2.13.0|https://github.com/node-usb/node-usb|[MIT](https://github.com/node-usb/node-usb/blob/master/LICENSE)|

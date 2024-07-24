@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.2.2
+- Allows setting breakpoints in assembler files (`.s`, `.S`).
+- Enables different jython templates to be opened from the 'New File' menu.
+- Adds Sort options to the function view.
+- Adds support for vscode variables to `fvpParameters` setting in `launch.json`
+
 ## 1.2.1
 - Fixes a regression in the debug configuration GUI for Fixed Virtual Platforms.
 - Skips applying flash algorithm settings for Arm Debugger versions prior to v6.1.0.

@@ -8,14 +8,14 @@
     },
     {
         "name": "@vscode/codicons",
-        "version": "0.0.35",
+        "version": "0.0.36",
         "spdx": "MIT",
         "url": "https://github.com/microsoft/vscode-codicons",
         "license": "https://github.com/microsoft/vscode-codicons/blob/main/LICENSE-CODE"
     },
     {
         "name": "jsonc-parser",
-        "version": "3.2.1",
+        "version": "3.3.1",
         "spdx": "MIT",
         "url": "https://github.com/microsoft/node-jsonc-parser",
         "license": "https://github.com/microsoft/node-jsonc-parser/blob/main/LICENSE.md"
@@ -50,14 +50,14 @@
     },
     {
         "name": "react",
-        "version": "18.2.0",
+        "version": "18.3.1",
         "spdx": "MIT",
         "url": "https://github.com/facebook/react",
         "license": "https://github.com/facebook/react/blob/main/LICENSE"
     },
     {
         "name": "react-dom",
-        "version": "18.2.0",
+        "version": "18.3.1",
         "spdx": "MIT",
         "url": "https://github.com/facebook/react",
         "license": "https://github.com/facebook/react/blob/main/LICENSE"
