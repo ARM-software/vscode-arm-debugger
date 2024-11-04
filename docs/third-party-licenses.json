@@ -1,7 +1,7 @@
 [
     {
         "name": "@fortawesome/fontawesome-free",
-        "version": "6.5.2",
+        "version": "6.6.0",
         "spdx": "MIT",
         "url": "https://github.com/FortAwesome/Font-Awesome",
         "license": "https://github.com/FortAwesome/Font-Awesome/blob/6.x/LICENSE.txt"
@@ -32,7 +32,7 @@
         "version": "4.0.8",
         "spdx": "MIT",
         "url": "https://github.com/lodash/lodash",
-        "license": "https://github.com/Leonidas-from-XIV/node-xml2js/blob/master/LICENSE"
+        "license": "https://github.com/lodash/lodash/blob/main/LICENSE"
     },
     {
         "name": "node-fetch",
@@ -78,28 +78,28 @@
     },
     {
         "name": "usb",
-        "version": "2.13.0",
+        "version": "2.14.0",
         "spdx": "MIT",
         "url": "https://github.com/node-usb/node-usb",
         "license": "https://github.com/node-usb/node-usb/blob/master/LICENSE"
     },
     {
         "name": "vscode-debugadapter",
-        "version": "1.65.0",
+        "version": "1.68.0",
         "spdx": "MIT",
         "url": "https://github.com/Microsoft/vscode-debugadapter-node",
         "license": "https://github.com/Microsoft/vscode-debugadapter-node/blob/master/License.txt"
     },
     {
         "name": "vscode-debugprotocol",
-        "version": "1.65.0",
+        "version": "1.68.0",
         "spdx": "MIT",
         "url": "https://github.com/Microsoft/vscode-debugadapter-node",
         "license": "https://github.com/Microsoft/vscode-debugadapter-node/blob/master/License.txt"
     },
     {
         "name": "vscode-extension-telemetry",
-        "version": "0.9.6",
+        "version": "0.9.7",
         "spdx": "MIT",
         "url": "https://github.com/microsoft/vscode-extension-telemetry",
         "license": "https://github.com/microsoft/vscode-extension-telemetry/blob/main/LICENSE"
@@ -137,6 +137,6 @@
         "version": "0.6.2",
         "spdx": "MIT",
         "url": "https://github.com/Leonidas-from-XIV/node-xml2js",
-        "license": "https://github.com/lodash/lodash/blob/main/LICENSE"
+        "license": "https://github.com/Leonidas-from-XIV/node-xml2js/blob/master/LICENSE"
     }
 ]

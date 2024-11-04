@@ -1,5 +1,19 @@
 # Change Log
 
+## [Unreleased]
+
+## 1.4.0
+- Fixes issue when starting a debug session if log level was set to `off`, `error` or `warn`.
+- Fixes issue with aborting start of a debug session if receiving error log messages from Arm Debugger.
+- Adds support for Arm Debugger v6.3.0 release.
+- Adds `Target Initialization Script` and `Debug Initialization Script` options to debug configuration GUI.
+- Adds section to `README.md` to announce introduction of extension pre-releases.
+- Replaces `Open Run and Debug Configuration` context menu entry with file-sensitive `Open Debug Configuration` and `Open Run Configuration` entries.
+- Updates `Debugger Path` extension setting to locate the Arm Debugger Target Configuration Database and Jython imports.
+- Updates `probe` debug and run configuration setting to default to `auto`. `auto` resolves to `CMSIS-DAP` if probe type cannot be automatically detected.
+- Updates error handling for run and debug operations if Arm Debugger is neither in active tools environment, nor configured by `Debugger Path` extension setting.
+- Updates extension setting descriptions.
+
 ## 1.2.2
 - Allows setting breakpoints in assembler files (`.s`, `.S`).
 - Enables different jython templates to be opened from the 'New File' menu.

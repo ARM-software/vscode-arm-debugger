@@ -2,7 +2,7 @@
 
 ## Overview
 
-The complete [documentation](https://developer.arm.com/documentation/108029/latest/Extension-pack-and-extensions) for Arm® Debugger and the other Keil® Studio extensions is available on Arm Developer.
+The complete documentation for [Arm® Debugger](https://developer.arm.com/documentation/108029/latest/Arm-Debugger-extension) and the other [Keil® Studio extensions](https://developer.arm.com/documentation/108029/latest/Extension-pack-and-extensions) is available on Arm Developer.
 
 The Arm Debugger extension provides access to the Arm Debugger engine for Visual Studio Code by implementing the [Microsoft Debug Adapter Protocol (DAP)](https://microsoft.github.io/debug-adapter-protocol//). The Arm Debugger engine supports connections to physical and virtual targets:
 
@@ -71,6 +71,12 @@ Some capabilities of the Arm Debugger engine that are not yet exposed in Visual 
 
 See the [documentation](https://developer.arm.com/documentation/108029/latest/Arm-Debugger-extension) for the Arm Debugger extension to run a project on your hardware and start a debug session.
 
-## Submit feedback
+## Pre-releases
 
-To submit feedback on the Arm Debugger extension preview version, please [open a bug report or a feature request](https://github.com/Arm-Software/vscode-arm-debugger/issues/new/choose).
+The Arm Debugger extension introduces pre-releases from version 1.3.0. It follows the recommended [versioning](https://code.visualstudio.com/api/working-with-extensions/publishing-extension#prerelease-extensions) scheme `Major.Minor.Patch` with:
+- Arm Debugger extension release: `Minor` is an even number, for example `1.2.0`.
+- Arm Debugger extension pre-release: `Minor` is an odd number, for example `1.3.0`.
+
+## Submit feedback or report issues
+
+To submit feedback or report issues on the Arm Debugger extension, please use [GitHub issues](https://github.com/Arm-Software/vscode-arm-debugger/issues/new/choose) in the extension repository.
