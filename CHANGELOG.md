@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## 1.4.1
+
+- Improves performance of the debug configuration GUI.
+
 ## 1.4.0
 - Fixes issue when starting a debug session if log level was set to `off`, `error` or `warn`.
 - Fixes issue with aborting start of a debug session if receiving error log messages from Arm Debugger.
