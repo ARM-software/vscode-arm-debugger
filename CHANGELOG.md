@@ -2,6 +2,12 @@
 
 ## [Unreleased]
 
+## 1.4.2
+
+- Improves the generation of FVP parameter files. Selecting an FVP in the **Device Manager** panel is no longer required.
+- Improves the handling of empty `launch.json` and `tasks.json` files by the **Run Configuration** and **Debug Configuration** visual editors.
+- Improves various display texts.
+
 ## 1.4.1
 
 - Improves performance of the debug configuration GUI.
