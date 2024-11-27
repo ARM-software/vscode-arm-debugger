@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## 1.4.3
+
+- Adds the possibility to manage additional Arm Debugger Configuration Databases with the **Configuration Database: Additional Locations** and **Configuration Database: Disable Default** extension settings.
+
 ## 1.4.2
 
 - Improves the generation of FVP parameter files. Selecting an FVP in the **Device Manager** panel is no longer required.
