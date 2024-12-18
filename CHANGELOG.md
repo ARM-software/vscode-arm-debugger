@@ -2,6 +2,14 @@
 
 ## [Unreleased]
 
+## 1.4.4
+
+- Allows debug connections without setting `program` or `programs`. Ignores `debugFrom` in such cases.
+- Renamed context menu entries `Open Debug Configuration` and `Open Run Configuration` to `Open Arm Debug Configuration` and `Open Arm Run Configuration`.
+- Improves error messages.
+- Shows notification when Arm Debugger process is starting up.
+- Updates default Arm Debugger `launch` configuration for type `arm-debugger.fvp` to include a `cdbEntry` placeholder.
+
 ## 1.4.3
 
 - Adds the possibility to manage additional Arm Debugger Configuration Databases with the **Configuration Database: Additional Locations** and **Configuration Database: Disable Default** extension settings.

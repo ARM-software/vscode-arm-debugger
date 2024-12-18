@@ -1,6 +1,6 @@
 ## Arm Debugger extension Third Party IP
 
-Report prepared at : 2024-10-28 10:15:21
+Report prepared at : 2024-12-18 13:58:4
 
 | *Package* | *Version* | *Repository* | *License* |
 |---|---|---|---|
@@ -10,7 +10,7 @@ Report prepared at : 2024-10-28 10:15:21
 |jszip|3.10.1|https://github.com/Stuk/jszip|[MIT](https://github.com/Stuk/jszip/blob/master/LICENSE.markdown)|
 |lodash.debounce|4.0.8|https://github.com/lodash/lodash|[MIT](https://github.com/lodash/lodash/blob/main/LICENSE)|
 |node-fetch|3.3.2|https://github.com/node-fetch/node-fetch|[MIT](https://github.com/node-fetch/node-fetch/blob/master/LICENSE.md)|
-|primereact|10.5.3|https://github.com/primefaces/primereact|[MIT](https://github.com/primefaces/primereact/blob/master/LICENSE.md)|
+|primereact|10.8.5|https://github.com/primefaces/primereact|[MIT](https://github.com/primefaces/primereact/blob/master/LICENSE.md)|
 |react|18.3.1|https://github.com/facebook/react|[MIT](https://github.com/facebook/react/blob/main/LICENSE)|
 |react-dom|18.3.1|https://github.com/facebook/react|[MIT](https://github.com/facebook/react/blob/main/LICENSE)|
 |react-scroll|1.9.0|https://github.com/fisshy/react-scroll|[MIT](https://github.com/fisshy/react-scroll/blob/master/LICENSE)|

@@ -43,7 +43,7 @@
     },
     {
         "name": "primereact",
-        "version": "10.5.3",
+        "version": "10.8.5",
         "spdx": "MIT",
         "url": "https://github.com/primefaces/primereact",
         "license": "https://github.com/primefaces/primereact/blob/master/LICENSE.md"
