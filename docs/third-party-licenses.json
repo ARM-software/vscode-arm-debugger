@@ -1,7 +1,7 @@
 [
     {
         "name": "@fortawesome/fontawesome-free",
-        "version": "6.6.0",
+        "version": "6.7.2",
         "spdx": "MIT",
         "url": "https://github.com/FortAwesome/Font-Awesome",
         "license": "https://github.com/FortAwesome/Font-Awesome/blob/6.x/LICENSE.txt"
@@ -43,31 +43,24 @@
     },
     {
         "name": "primereact",
-        "version": "10.8.5",
+        "version": "10.9.2",
         "spdx": "MIT",
         "url": "https://github.com/primefaces/primereact",
         "license": "https://github.com/primefaces/primereact/blob/master/LICENSE.md"
     },
     {
         "name": "react",
-        "version": "18.3.1",
+        "version": "19.1.0",
         "spdx": "MIT",
         "url": "https://github.com/facebook/react",
         "license": "https://github.com/facebook/react/blob/main/LICENSE"
     },
     {
         "name": "react-dom",
-        "version": "18.3.1",
+        "version": "19.1.0",
         "spdx": "MIT",
         "url": "https://github.com/facebook/react",
         "license": "https://github.com/facebook/react/blob/main/LICENSE"
-    },
-    {
-        "name": "react-scroll",
-        "version": "1.9.0",
-        "spdx": "MIT",
-        "url": "https://github.com/fisshy/react-scroll",
-        "license": "https://github.com/fisshy/react-scroll/blob/master/LICENSE"
     },
     {
         "name": "tree-kill",
@@ -78,7 +71,7 @@
     },
     {
         "name": "usb",
-        "version": "2.14.0",
+        "version": "2.15.0",
         "spdx": "MIT",
         "url": "https://github.com/node-usb/node-usb",
         "license": "https://github.com/node-usb/node-usb/blob/master/LICENSE"
@@ -106,14 +99,14 @@
     },
     {
         "name": "vscode-messenger",
-        "version": "0.4.5",
+        "version": "0.5.1",
         "spdx": "MIT",
         "url": "https://github.com/TypeFox/vscode-messenger",
         "license": "https://github.com/TypeFox/vscode-messenger/blob/main/LICENSE"
     },
     {
         "name": "vscode-uri",
-        "version": "3.0.8",
+        "version": "3.1.0",
         "spdx": "MIT",
         "url": "https://github.com/microsoft/vscode-uri",
         "license": "https://github.com/microsoft/vscode-uri/blob/main/LICENSE.md"
@@ -138,5 +131,19 @@
         "spdx": "MIT",
         "url": "https://github.com/Leonidas-from-XIV/node-xml2js",
         "license": "https://github.com/Leonidas-from-XIV/node-xml2js/blob/master/LICENSE"
+    },
+    {
+        "name": "cva",
+        "version": "0.7.1",
+        "spdx": "Apache-2.0",
+        "url": "https://github.com/joe-bell/cva",
+        "license": "https://github.com/joe-bell/cva/blob/main/LICENSE"
+    },
+    {
+        "name": "clsx",
+        "version": "2.1.1",
+        "spdx": "MIT",
+        "url": "https://github.com/lukeed/clsx",
+        "license": "https://github.com/lukeed/clsx/blob/master/license"
     }
 ]
