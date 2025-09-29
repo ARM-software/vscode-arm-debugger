@@ -2,7 +2,7 @@
 
 - [Overview](#overview)
 - [Prerequisites](#prerequisites)
-- [Install the extension](#install-the-extension)
+- [Install the Arm Debugger extension](#install-the-arm-debugger-extension)
 - [Install the Arm Debugger engine and other tools with vcpkg](#install-the-arm-debugger-engine-and-other-tools-with-vcpkg)
 - [Define a run configuration and run a project on your board](#define-a-run-configuration-and-run-a-project-on-your-board)
 - [Define and start a debug connection](#define-and-start-a-debug-connection)
@@ -23,15 +23,15 @@
 
 ## Overview
 
-The Arm® Debugger extension allows you to debug and optimize software running on Arm-based processors. The extension can be used independently and is also compatible with other extensions included in the Keil Studio Pack.
+The Arm® Debugger extension allows you to debug and optimize software running on Arm-based processors. You can use the extension as a standalone tool or integrate it into your existing toolchain. It is also compatible with other extensions included in the [Keil Studio Pack](https://marketplace.visualstudio.com/items?itemName=Arm.keil-studio-pack).
 
-The extension provides access to the Arm Debugger engine by implementing the [Microsoft Debug Adapter Protocol (DAP)](https://microsoft.github.io/debug-adapter-protocol//).
+The extension provides access to the Arm Debugger engine (armdbg) by implementing the [Microsoft Debug Adapter Protocol (DAP)](https://microsoft.github.io/debug-adapter-protocol//).
 
 The Arm Debugger engine supports connections to the following targets:
 
-- Physical targets: Either through external debugging, for example, Arm ULINK™ or DSTREAM debug probes, or through on-board low-cost debugging, for example, ST-Link or CMSIS-DAP based debug probes.
+- Physical targets: Either through external hardware, for example, Arm ULINK™ or DSTREAM debug probes, or through low-cost on-board hardware, for example, ST-Link or CMSIS-DAP
 
-- Virtual targets: Using Fixed Virtual Platform models (FVPs).
+- Virtual targets: Using Fixed Virtual Platform (FVP) models
 
 See the [Arm Debugger Release Note](https://developer.arm.com/documentation/109667/latest) for an overview of each Arm Debugger engine release.
 
@@ -39,7 +39,7 @@ See the [Arm Debugger Release Note](https://developer.arm.com/documentation/1096
 
 The Arm Debugger extension allows you to:
 
-- Load images like .elf, .axf, or .bin files and debug information according to the DWARF Debugging Information Format Standard, up to and including version 5
+- Load images like `.elf`, `.axf`, or `.bin` files and debug information according to the DWARF Debugging Information Format Standard, up to and including version 5
 
 - Run images
 
@@ -50,8 +50,6 @@ The Arm Debugger extension allows you to:
 - Access variables and registers
 
 - View the contents of memory
-
-- Debug virtual targets (FVPs)
 
 - Access the [CLI](https://developer.arm.com/documentation/101471/latest/Arm-Debugger-commands) using the Debug Console
 
@@ -65,7 +63,7 @@ The Arm Debugger engine supports debug connections based on the following inform
 
 ### Supported technologies
 
-For a complete list of supported architectures, processors, Fixed Virtual Platform models (FVPs), and debug probes see the [Arm Debugger Release Note](https://developer.arm.com/documentation/109667/latest).
+For a complete list of supported architectures, processors, Fixed Virtual Platform (FVP) models, and debug probes see the [Arm Debugger Release Note](https://developer.arm.com/documentation/109667/latest).
 
 ## Prerequisites
 
@@ -77,17 +75,19 @@ The following extensions are installed automatically alongside Arm Debugger:
 
 - Arm Device Manager (identifier: `arm.device-manager`)
 
-- Arm CMSIS Solution (identifier: `arm.cmsis-csolution`)
+- Arm Virtual Hardware (identifier: `arm.virtual-hardware`)
 
 - Peripheral Inspector (identifier: `eclipse-cdt.peripheral-inspector`)
 
 - Memory Inspector (identifier: `eclipse-cdt.memory-inspector`)
 
-To debug a virtual target using FVPs, you must have the models installed locally. See [Work with a virtual target](#work-with-a-virtual-target) for more details.
+To work with CMSIS projects, you must install the Arm CMSIS Solution extension (identifier: `arm.cmsis-csolution`) separately.
+
+To debug a program running on an FVP model, you must have FVPs installed locally. See [Work with a virtual target](#work-with-a-virtual-target) for more details.
 
 You must have an example project ready to use. You can create an example from scratch. Alternatively, if you are working with CMSIS, you can start from one of the official examples available on [Arm Examples](https://github.com/Arm-Examples) or [keil.arm.com](https://www.keil.arm.com/boards/). These examples contain pre-configured `vcpkg-configuration.json`, `tasks.json`, and `launch.json` files.
 
-## Install the extension
+## Install the Arm Debugger extension
 
 1. Open Visual Studio Code Desktop and click the **Extensions** icon ![Extensions icon](https://github.com/ARM-software/vscode-arm-debugger/raw/main/docs/images/extensions-icon.png) in the Activity Bar to open the **Extensions** view.
 
@@ -144,7 +144,7 @@ To install the Arm Debugger engine and other tools:
 
 ## Define a run configuration and run a project on your board
 
-To download your code and run it on your hardware, you must first configure a task. Visual Studio Code uses a `tasks.json` configuration file to run projects. Use the **Run Configuration** visual editor to select options. Alternatively, you can add the configuration manually in the `tasks.json` file.
+To flash a program onto your hardware, you must first configure a task. Visual Studio Code uses a `tasks.json` configuration file to run projects. Use the **Run Configuration** visual editor to select options. Alternatively, you can add the configuration manually in the `tasks.json` file.
 
 **Note**: In this procedure, it is assumed that you have already built either a PDSC file or an AXF or ELF file using your toolchain.
 
@@ -163,8 +163,8 @@ To define a run configuration and run a project on your board:
             {
                 "type": "arm-debugger.flash",
                 "connectionAddress": "${command:device-manager.getSerialNumber}",
-                "program": "${command:arm-debugger.getApplicationFile}",
-                "cmsisPack": "${command:cmsis-csolution.getTargetPack}",
+                "programs": ["${command:arm-debugger.getApplicationFile}"],
+                "cmsisPack": "${command:cmsis-csolution.getDfpName}",
                 "deviceName": "${command:cmsis-csolution.getDeviceName}",
                 "processorName": "${command:cmsis-csolution.getProcessorName}",
                 "problemMatcher": [],
@@ -175,7 +175,6 @@ To define a run configuration and run a project on your board:
     ```
 
 1. To open the **Run Configuration** visual editor, either:
-
     - Click the **Open in editor** code lens above the configuration. Code lenses are enabled by default with the **Enable Code Lens** Arm Debugger setting.
 
     - Click **Open Arm Run Configuration** ![Run Configuration icon](https://github.com/ARM-software/vscode-arm-debugger/raw/main/docs/images/run-debug-config-icon.png) in the top right-hand corner of the text editor.
@@ -183,49 +182,40 @@ To define a run configuration and run a project on your board:
     ![Run Configuration editor](https://github.com/ARM-software/vscode-arm-debugger/raw/main/docs/images/run-config-editor.png)
 
 1. Use the visual editor to enter the following details:
-
-    - **CMSIS-Pack/Device** section:
-
+    - **CMSIS-Pack and Device** section:
         - **CMSIS-Pack**: Select the Device Family Pack (DFP) for the target debug probe or board.
+            - Default value: `auto (CMSIS Solution)`. The Arm Debugger extension uses the DFP for the active device defined in the `*.csolution.yml` file of your solution. The Arm Debugger extension adds the `"${command:cmsis-csolution.getDfpName}"` command in the JSON file for `"cmsisPack"`.
 
-          - Default value: `auto (CMSIS Solution)`. The Arm Debugger extension uses the DFP for the active device defined in the `*.csolution.yml` file of your solution. The Arm Debugger extension adds the `"${command:cmsis-csolution.getTargetPack}"` command in the JSON file for `"cmsisPack"`.
+            - `auto (Device Manager)`: The Arm Debugger extension uses the DFP for the active device in the Arm Device Manager extension. The Arm Debugger extension adds the `"${command:device-manager.getDevicePack}"` command in the JSON file for `"cmsisPack"`.
 
-          - `auto (Device Manager)`: The Arm Debugger extension uses the DFP for the active device in the Arm Device Manager extension. The Arm Debugger extension adds the `"${command:device-manager.getDevicePack}"` command in the JSON file for `"cmsisPack"`.
-
-          - You can also select the DFP for the active device in the drop-down list. Alternatively, type the name of the DFP in the format `<vendor>::<pack>@<version>`. For example: `ARM::Cortex_DFP@1.1.0`.
+            - You can also select the DFP for the active device in the drop-down list. Alternatively, type the name of the DFP in the format `<vendor>::<pack>@<version>`. For example: `ARM::Cortex_DFP@1.1.0`.
 
         - **CMSIS-Pack Device Name**: Select the name of the target device, that is, the target chip on your board.
+            - Default value: `auto (CMSIS Solution)`. The Arm Debugger extension detects the device name from the information available for the probe or board in the `*.csolution.yml` file of your solution. The Arm Debugger extension adds the `"${command:cmsis-csolution.getDeviceName}"` command in the JSON file for `"deviceName"`.
 
-          - Default value: `auto (CMSIS Solution)`. The Arm Debugger extension detects the device name from the information available for the probe or board in the `*.csolution.yml` file of your solution. The Arm Debugger extension adds the `"${command:cmsis-csolution.getDeviceName}"` command in the JSON file for `"deviceName"`.
+            - `auto (Device Manager)`: The Arm Debugger extension detects the device name from the information available for the probe or board in the Arm Device Manager extension. The Arm Debugger extension adds the `"${command:device-manager.getDeviceName}"` command in the JSON file for `"deviceName"`.
 
-          - `auto (Device Manager)`: The Arm Debugger extension detects the device name from the information available for the probe or board in the Arm Device Manager extension. The Arm Debugger extension adds the `"${command:device-manager.getDeviceName}"` command in the JSON file for `"deviceName"`.
-
-          - You can also select the device name in the drop-down list. Alternatively, type the device name. For example: `MPS3_SSE_300`. The device name available in the drop-down list is the one defined in the `*.csolution.yml` file of your solution.
+            - You can also select the device name in the drop-down list. Alternatively, type the device name. For example: `MPS3_SSE_300`. The device name available in the drop-down list is the one defined in the `*.csolution.yml` file of your solution.
 
         - **Processor Name**: For multicore devices, type the name of the processor to use.
+            - Default value: `auto (CMSIS Solution)`. The Arm Debugger extension uses the processor name that is defined in the `*.csolution.yml` file of your solution. The Arm Debugger extension adds the `"${command:cmsis-csolution.getProcessorName}"` command in the JSON file for `"processorName"`.
 
-          - Default value: `auto (CMSIS Solution)`. The Arm Debugger extension uses the processor name that is defined in the `*.csolution.yml` file of your solution. The Arm Debugger extension adds the `"${command:cmsis-csolution.getProcessorName}"` command in the JSON file for `"processorName"`.
-
-          - You can also select the processor name in the drop-down list. Alternatively, type the processor name. For example: `cm4`. The processor names available in the drop-down list are the ones defined in the `*.csolution.yml` file of your solution.
+            - You can also select the processor name in the drop-down list. Alternatively, type the processor name. For example: `cm4`. The processor names available in the drop-down list are the ones defined in the `*.csolution.yml` file of your solution.
 
     - **Connections** section:
-
         - **Connection Address**: Select the serial number of the connected debug probe or debug unit.
+            - Default value: `auto`. With `auto`, the Arm Debugger extension uses the serial number of the active device in the Arm Device Manager extension by default. The Arm Debugger extension adds the `"${command:device-manager.getSerialNumber}"` command in the JSON file for `"connectionAddress"`.
 
-          - Default value: `auto`. With `auto`, the Arm Debugger extension uses the serial number of the active device in the Arm Device Manager extension by default. The Arm Debugger extension adds the `"${command:device-manager.getSerialNumber}"` command in the JSON file for `"connectionAddress"`.
-
-          - You can also select the serial number of the active device in the drop-down list. Alternatively, type a connection address or serial number manually.
+            - You can also select the serial number of the active device in the drop-down list. Alternatively, type a connection address or serial number manually.
 
     - **Application** section:
-
-        - **Program Files**: Click **Add File** to point to an AXF or ELF file. You can add as many files as you need. The Arm Debugger extension uses the files in the order in which you added them. You can also click **Detect** to use `${command:arm-debugger.getApplicationFile}`. This command detects the AXF or ELF file to use or offers a selection of files available if several AXF or ELF files are present in your workspace.
+        - **Program Files**: Click **Add File** to point to an AXF or ELF file. You can add as many files as you need. The Arm Debugger extension uses the files in the order in which you added them. You can also click **Detect** to use `${command:arm-debugger.getApplicationFile}`. This command detects the AXF or ELF file to use or offers a selection of files available if several AXF or ELF files are present in your workspace. Alternatively, you can click **Detect All Files** to use `${command:arm-debugger.getApplicationFiles}`. This command detects all the AXF or ELF files to use that are present in your workspace.
 
 1. Save your changes.
 
     The options that you select in the editor are added in the `tasks.json` file.<!-- Links to standalone guide to add: For information on more options, see "Run configuration options in the visual editor" and "Arm Debugger run configuration options".-->
 
 1. To run the project on your board:
-
     - Open the Command Palette. Search for `Tasks: Run Task` and then select it.
 
     - Select the `arm-debugger.flash: Flash Device` task (or **Flash Device**).
@@ -256,7 +246,7 @@ Select **Hardware debug connection**, then select:
 
 #### Virtual targets
 
-Select **Model debug connection** to use Fixed Virtual Platform models (FVPs) to debug virtual targets. This adds an `"arm-debugger.configdb"` configuration with a `"launch"` request to the `launch.json` file.
+Select **Model debug connection** to use Fixed Virtual Platform (FVP) models to debug virtual targets. This adds an `"arm-debugger.configdb"` configuration with a `"launch"` request to the `launch.json` file.
 
 ### Arm Debugger Attach
 
@@ -297,7 +287,6 @@ To define and start a debug connection:
     ```
 
 1. To open the **Debug Configuration** visual editor, either:
-
     - Click the **Open in editor** code lens above the configuration. Code lenses are enabled by default with the **Enable Code Lens** Arm Debugger setting.
 
     - Click **Open Arm Debug Configuration** ![Debug Configuration icon](https://github.com/ARM-software/vscode-arm-debugger/raw/main/docs/images/run-debug-config-icon.png) in the top right-hand corner of the text editor.
@@ -305,44 +294,36 @@ To define and start a debug connection:
     ![Debug Configuration editor](https://github.com/ARM-software/vscode-arm-debugger/raw/main/docs/images/debug-config-editor-configdb.png)
 
 1. Use the visual editor to enter the following details:
-
     - **Connections** section:
-
         - **Select Target**: The configuration database is where Arm Debugger stores information about the processors, boards, and cores that it can connect to. The database is arranged by vendor. Drill down to select the core that you want to connect to.
 
         - **Bare Metal Debug** > **Connection Type**: Select a type for the debug probe that you are using or the debug unit on your board.
+            - Default value: `DSTREAM Family` if DSTREAM is supported.
 
-          - Default value: `DSTREAM Family` if DSTREAM is supported.
-
-          - You can connect a probe or a board to your computer over USB. In this case, the Arm Debugger extension sets a probe type based on the configuration database entry selected in the **Select Target** drop-down list.
+            - You can connect a probe or a board to your computer over USB. In this case, the Arm Debugger extension sets a probe type based on the configuration database entry selected in the **Select Target** drop-down list.
 
         - **Bare Metal Debug** > **Debug Port Mode**: Select a debug port mode to use. A debug port allows you to communicate with and debug microcontrollers or other embedded systems.
+            - Default value: `JTAG`. Use the JTAG debug port mode.
+            
+            - `auto`: The debugger decides which debug port mode to use based on the connected target device.
 
-          - Default value: `JTAG` or `SWD` (read only). The option that displays depends on the board that you have selected.
-
-          - `JTAG`: Use the JTAG debug port mode.
-
-          - `SWD`: Use the SWD debug port mode.
+            - `SWD`: Use the SWD debug port mode.
 
         - **Bare Metal Debug** > **Clock Speed**: The maximum clock frequency for the debug communication. The clock frequency is the speed at which data is transferred between the debugger and the target device during debugging operations. The frequency actually used depends on the capabilities of the debug probe and might be reduced to the next supported frequency.
+            - Default value: `auto`. With `auto`, the debugger decides which clock frequency to use based on the connected target device.
 
-          - Default value: `auto`. With `auto`, the debugger decides which clock frequency to use based on the connected target device.
-
-          - Other possible values: `50MHz`, `33MHz`, `25MHz`, `20MHz`, `10MHz`, `5MHz`, `2MHz`, `1MHz`, `500kHz`, `200kHz`, `100kHz`, `50kHz`, `20kHz`, `10kHz`, `5kHz`.
+            - Other possible values: `50MHz`, `33MHz`, `25MHz`, `20MHz`, `10MHz`, `5MHz`, `2MHz`, `1MHz`, `500kHz`, `200kHz`, `100kHz`, `50kHz`, `20kHz`, `10kHz`, `5kHz`.
 
         - **Bare Metal Debug** > **Connection Address**: Select the serial number of the connected debug probe or debug unit.
+            - Select `auto` in the drop-down list. With `auto`, the Arm Debugger extension uses the serial number of the active device in the Arm Device Manager extension by default. The Arm Debugger extension adds the `"${command:device-manager.getSerialNumber}"` command in the JSON file for `"connectionAddress"`.
 
-          - Select `auto` in the drop-down list. With `auto`, the Arm Debugger extension uses the serial number of the active device in the Arm Device Manager extension by default. The Arm Debugger extension adds the `"${command:device-manager.getSerialNumber}"` command in the JSON file for `"connectionAddress"`.
-
-          - You can also enter the serial number or connection address of the active device.
+            - You can also enter the serial number or connection address of the active device.
 
     - **Application** section:
-
-        - **Program Files**: Click **Add File** to point to an AXF or ELF file. You can add as many files as you need. The Arm Debugger extension uses the files in the order in which you added them. You can also click **Detect** to use `${command:arm-debugger.getApplicationFile}`. This command detects the AXF or ELF file to use or offers a selection of files available if several AXF or ELF files are present in your workspace.
+        - **Program Files**: Click **Add File** to point to an AXF or ELF file. You can add as many files as you need. The Arm Debugger extension uses the files in the order in which you added them. You can also click **Detect** to use `${command:arm-debugger.getApplicationFile}`. This command detects the AXF or ELF file to use or offers a selection of files available if several AXF or ELF files are present in your workspace. Alternatively, you can click **Detect All Files** to use `${command:arm-debugger.getApplicationFiles}`. This command detects all the AXF or ELF files to use that are present in your workspace.
 
     - **Debugger** section:
-
-        - **Run Control**: As you have selected an AXF or ELF file in **Program Files**, select **Debug From Entrypoint** or **Debug From Symbol**. The debugger can either start from the entry point of the program or run until it reaches a specified symbol (defaults to main) before pausing. 
+        - **Run Control**: As you have selected an AXF or ELF file in **Program Files**, select **Debug From Entrypoint** or **Debug From Symbol**. The debugger can either start from the entry point of the program or run until it reaches a specified symbol (defaults to main) before pausing.
 
         **Note**: The **Connect Only** option is set by default and does not require you to select a file in **Program Files**.
 
@@ -382,8 +363,10 @@ To define and start a debug connection:
                 "type": "arm-debugger",
                 "request": "launch",
                 "connectionAddress": "${command:device-manager.getSerialNumber}",
-                "program": "${command:arm-debugger.getApplicationFile}",
-                "cmsisPack": "${command:cmsis-csolution.getTargetPack}",
+                "programs": [
+                    "${command:arm-debugger.getApplicationFile}"
+                ],
+                "cmsisPack": "${command:cmsis-csolution.getDfpName}",
                 "deviceName": "${command:cmsis-csolution.getDeviceName}",
                 "processorName": "${command:cmsis-csolution.getProcessorName}"
             }
@@ -392,7 +375,6 @@ To define and start a debug connection:
     ```
 
 1. To open the **Debug Configuration** visual editor, either:
-
     - Click the **Open in editor** code lens above the configuration. Code lenses are enabled by default with the **Enable Code Lens** Arm Debugger setting.
 
     - Click **Open Arm Debug Configuration** ![Debug Configuration icon](https://github.com/ARM-software/vscode-arm-debugger/raw/main/docs/images/run-debug-config-icon.png) in the top right-hand corner of the text editor.
@@ -400,65 +382,53 @@ To define and start a debug connection:
     ![Debug Configuration editor](https://github.com/ARM-software/vscode-arm-debugger/raw/main/docs/images/debug-config-editor-cmsis.png)
 
 1. Use the visual editor to enter the following details:
-
-    - **CMSIS-Pack/Device** section:
-
+    - **CMSIS-Pack and Device** section:
         - **CMSIS-Pack**: Select the Device Family Pack (DFP) for the target debug probe or board.
+            - Default value: `auto (CMSIS Solution)`. The Arm Debugger extension uses the DFP for the active device defined in the `*.csolution.yml` file of your solution. The Arm Debugger extension adds the `"${command:cmsis-csolution.getDfpName}"` command in the JSON file for `"cmsisPack"`.
 
-          - Default value: `auto (CMSIS Solution)`. The Arm Debugger extension uses the DFP for the active device defined in the `*.csolution.yml` file of your solution. The Arm Debugger extension adds the `"${command:cmsis-csolution.getTargetPack}"` command in the JSON file for `"cmsisPack"`.
+            - `auto (Device Manager)`: The Arm Debugger extension uses the DFP for the active device in the Arm Device Manager extension. The Arm Debugger extension adds the `"${command:device-manager.getDevicePack}"` command in the JSON file for `"cmsisPack"`.
 
-          - `auto (Device Manager)`: The Arm Debugger extension uses the DFP for the active device in the Arm Device Manager extension. The Arm Debugger extension adds the `"${command:device-manager.getDevicePack}"` command in the JSON file for `"cmsisPack"`.
-
-          - You can also select the DFP for the active device in the drop-down list. Alternatively, type the name of the DFP in the format `<vendor>::<pack>@<version>`. For example: `ARM::Cortex_DFP@1.1.0`.
+            - You can also select the DFP for the active device in the drop-down list. Alternatively, type the name of the DFP in the format `<vendor>::<pack>@<version>`. For example: `ARM::Cortex_DFP@1.1.0`.
 
         - **CMSIS-Pack Device Name**: Select the name of the target device, that is, the target chip on your board.
+            - Default value: `auto (CMSIS Solution)`. The Arm Debugger extension detects the device name from the information available for the probe or board in the `*.csolution.yml` file of your solution. The Arm Debugger extension adds the `"${command:cmsis-csolution.getDeviceName}"` command in the JSON file for `"deviceName"`.
 
-          - Default value: `auto (CMSIS Solution)`. The Arm Debugger extension detects the device name from the information available for the probe or board in the `*.csolution.yml` file of your solution. The Arm Debugger extension adds the `"${command:cmsis-csolution.getDeviceName}"` command in the JSON file for `"deviceName"`.
+            - `auto (Device Manager)`: The Arm Debugger extension detects the device name from the information available for the probe or board in the Arm Device Manager extension. The Arm Debugger extension adds the `"${command:device-manager.getDeviceName}"` command in the JSON file for `"deviceName"`.
 
-          - `auto (Device Manager)`: The Arm Debugger extension detects the device name from the information available for the probe or board in the Arm Device Manager extension. The Arm Debugger extension adds the `"${command:device-manager.getDeviceName}"` command in the JSON file for `"deviceName"`.
-
-          - You can also select the device name in the drop-down list. Alternatively, type the device name. For example: `MPS3_SSE_300`. The device name available in the drop-down list is the one defined in the `*.csolution.yml` file of your solution.
+            - You can also select the device name in the drop-down list. Alternatively, type the device name. For example: `MPS3_SSE_300`. The device name available in the drop-down list is the one defined in the `*.csolution.yml` file of your solution.
 
         - **Processor Name**: For multicore devices, type the name of the processor to use.
+            - Default value: `auto (CMSIS Solution)`. The Arm Debugger extension uses the processor name that is defined in the `*.csolution.yml` file of your solution. The Arm Debugger extension adds the `"${command:cmsis-csolution.getProcessorName}"` command in the JSON file for `"processorName"`.
 
-          - Default value: `auto (CMSIS Solution)`. The Arm Debugger extension uses the processor name that is defined in the `*.csolution.yml` file of your solution. The Arm Debugger extension adds the `"${command:cmsis-csolution.getProcessorName}"` command in the JSON file for `"processorName"`.
-
-          - You can also select the processor name in the drop-down list. Alternatively, type the processor name. For example: `cm4`. The processor names available in the drop-down list are the ones defined in the `*.csolution.yml` file of your solution.
+            - You can also select the processor name in the drop-down list. Alternatively, type the processor name. For example: `cm4`. The processor names available in the drop-down list are the ones defined in the `*.csolution.yml` file of your solution.
 
     - **Connections** section:
-
         - **Connection Type**: Select a type for the debug probe that you are using or the debug unit on your board.
+            - Default value: `auto`. If the Arm Debugger extension cannot set the probe type automatically, the default value is `CMSIS-DAP`.
 
-          - Default value: `auto`. If the Arm Debugger extension cannot set the probe type automatically, the default value is `CMSIS-DAP`.
-
-          - You can connect a probe or a board to your computer over USB. In this case, the Arm Debugger extension sets a probe type based on the serial number of the hardware detected.
+            - You can connect a probe or a board to your computer over USB. In this case, the Arm Debugger extension sets a probe type based on the serial number of the hardware detected.
 
         - **Debug Port Mode**: Select a debug port mode to use. A debug port allows you to communicate with and debug microcontrollers or other embedded systems.
+            - Default value: `auto`. With `auto`, the debugger decides which debug port mode to use based on the connected target device.
 
-          - Default value: `auto`. With `auto`, the debugger decides which debug port mode to use based on the connected target device.
+            - `JTAG`: Use the JTAG debug port mode.
 
-          - `JTAG`: Use the JTAG debug port mode.
-
-          - `SWD`: Use the SWD debug port mode.
+            - `SWD`: Use the SWD debug port mode.
 
         - **Clock Speed**: The maximum clock frequency for the debug communication. The clock frequency is the speed at which data is transferred between the debugger and the target device during debugging operations. The frequency actually used depends on the capabilities of the debug probe and might be reduced to the next supported frequency.
+            - Default value: `auto`. With `auto`, the debugger decides which clock frequency to use based on the connected target device.
 
-          - Default value: `auto`. With `auto`, the debugger decides which clock frequency to use based on the connected target device.
-
-          - Other possible values: `50MHz`, `33MHz`, `25MHz`, `20MHz`, `10MHz`, `5MHz`, `2MHz`, `1MHz`, `500kHz`, `200kHz`, `100kHz`, `50kHz`, `20kHz`, `10kHz`, `5kHz`.
+            - Other possible values: `50MHz`, `33MHz`, `25MHz`, `20MHz`, `10MHz`, `5MHz`, `2MHz`, `1MHz`, `500kHz`, `200kHz`, `100kHz`, `50kHz`, `20kHz`, `10kHz`, `5kHz`.
 
         - **Connection Address**: Select the serial number of the connected debug probe or debug unit.
+            - Default value: `auto`. With `auto`, the Arm Debugger extension uses the serial number of the active device in the Arm Device Manager extension by default. The Arm Debugger extension adds the `"${command:device-manager.getSerialNumber}"` command in the JSON file for `"connectionAddress"`.
 
-          - Default value: `auto`. With `auto`, the Arm Debugger extension uses the serial number of the active device in the Arm Device Manager extension by default. The Arm Debugger extension adds the `"${command:device-manager.getSerialNumber}"` command in the JSON file for `"connectionAddress"`.
-
-          - You can also select the serial number of the active device in the drop-down list. Alternatively, type a connection address or serial number manually.
+            - You can also select the serial number of the active device in the drop-down list. Alternatively, type a connection address or serial number manually.
 
     - **Application** section:
-
-        - **Program Files**: Click **Add File** to point to an AXF or ELF file. You can add as many files as you need. The Arm Debugger extension uses the files in the order in which you added them. You can also click **Detect** to use `${command:arm-debugger.getApplicationFile}`. This command detects the AXF or ELF file to use or offers a selection of files available if several AXF or ELF files are present in your workspace.
+        - **Program Files**: Click **Add File** to point to an AXF or ELF file. You can add as many files as you need. The Arm Debugger extension uses the files in the order in which you added them. You can also click **Detect** to use `${command:arm-debugger.getApplicationFile}`. This command detects the AXF or ELF file to use or offers a selection of files available if several AXF or ELF files are present in your workspace. Alternatively, you can click **Detect All Files** to use `${command:arm-debugger.getApplicationFiles}`. This command detects all the AXF or ELF files to use that are present in your workspace.
 
     - **Debugger** section:
-
         - **Run Control**: As you have selected an AXF or ELF file in **Program Files**, select **Debug From Entrypoint** or **Debug From Symbol**. The debugger can either start from the entry point of the program or run until it reaches a specified symbol (defaults to main) before pausing.
 
         **Note**: The **Connect Only** option does not require you to select a file in **Program Files**.
@@ -511,7 +481,6 @@ To define and start a debug connection:
     ```
 
 1. To open the **Debug Configuration** visual editor, either:
-
     - Click the **Open in editor** code lens above the configuration. Code lenses are enabled by default with the **Enable Code Lens** Arm Debugger setting.
 
     - Click **Open Arm Debug Configuration** ![Debug Configuration icon](https://github.com/ARM-software/vscode-arm-debugger/raw/main/docs/images/run-debug-config-icon.png) in the top right-hand corner of the text editor.
@@ -519,27 +488,22 @@ To define and start a debug connection:
     ![Debug Configuration editor](https://github.com/ARM-software/vscode-arm-debugger/raw/main/docs/images/debug-config-editor-configdb-fvp.png)
 
 1. Use the visual editor to enter the following details:
-
     - **Connections** section:
-
         - **Select Target**: Select the FVP that you want to use (for example, `MPS2_Cortex_M4`), then select a processor (for example, `Cortex-M4`). The list of available FVPs depends on the version of Arm Debugger specified in the `vcpkg-configuration.json` file.
 
     - **Application** section:
-
-        - **Program Files**: Click **Add File** to point to an AXF or ELF file. You can add as many files as you need. The Arm Debugger extension uses the files in the order in which you added them. You can also click **Detect** to use `${command:arm-debugger.getApplicationFile}`. This command detects the AXF or ELF file to use or offers a selection of files available if several AXF or ELF files are present in your workspace.
+        - **Program Files**: Click **Add File** to point to an AXF or ELF file. You can add as many files as you need. The Arm Debugger extension uses the files in the order in which you added them. You can also click **Detect** to use `${command:arm-debugger.getApplicationFile}`. This command detects the AXF or ELF file to use or offers a selection of files available if several AXF or ELF files are present in your workspace. Alternatively, you can click **Detect All Files** to use `${command:arm-debugger.getApplicationFiles}`. This command detects all the AXF or ELF files to use that are present in your workspace.
 
     - **Debugger** section:
-
         - **Run Control**: As you have selected an AXF or ELF file in **Program Files**, select **Debug From Entrypoint** or **Debug From Symbol**. The debugger can either start from the entry point of the program or run until it reaches a specified symbol (defaults to main) before pausing.
 
-       **Note**: The **Connect Only** option is set by default and does not require you to select a file in **Program Files**.
+        **Note**: The **Connect Only** option is set by default and does not require you to select a file in **Program Files**.
 
 1. Save your changes.
 
     The options you select in the editor are added in the `launch.json` file.<!-- Links to standalone guide to add: For information on more options, see the **Launch ConfigDB configuration for FVPs** options in "Debug configuration options in the visual editor" and "Arm Debugger ConfigDB debug configuration options".-->
 
 1. To start a debug session:
-
     - If you are on a Mac, make sure Docker is running.
 
     - Click **Start debugging** in the top right-hand corner of the **Debug Configuration** visual editor.
@@ -584,7 +548,6 @@ To attach to an existing connection:
 1. Save your changes.
 
 1. To attach to the debug connection:
-
     - Make sure that an Arm Debugger session is running.
 
     - Click the **Start debugging** code lens above the configuration in the `launch.json` file.

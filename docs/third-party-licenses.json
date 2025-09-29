@@ -1,14 +1,7 @@
 [
     {
-        "name": "@fortawesome/fontawesome-free",
-        "version": "6.7.2",
-        "spdx": "MIT",
-        "url": "https://github.com/FortAwesome/Font-Awesome",
-        "license": "https://github.com/FortAwesome/Font-Awesome/blob/6.x/LICENSE.txt"
-    },
-    {
         "name": "@vscode/codicons",
-        "version": "0.0.36",
+        "version": "0.0.39",
         "spdx": "MIT",
         "url": "https://github.com/microsoft/vscode-codicons",
         "license": "https://github.com/microsoft/vscode-codicons/blob/main/LICENSE-CODE"
@@ -50,28 +43,21 @@
     },
     {
         "name": "react",
-        "version": "19.1.0",
+        "version": "19.1.1",
         "spdx": "MIT",
         "url": "https://github.com/facebook/react",
         "license": "https://github.com/facebook/react/blob/main/LICENSE"
     },
     {
         "name": "react-dom",
-        "version": "19.1.0",
+        "version": "19.1.1",
         "spdx": "MIT",
         "url": "https://github.com/facebook/react",
         "license": "https://github.com/facebook/react/blob/main/LICENSE"
     },
     {
-        "name": "tree-kill",
-        "version": "1.2.2",
-        "spdx": "MIT",
-        "url": "https://github.com/pkrumins/node-tree-kill",
-        "license": "https://github.com/pkrumins/node-tree-kill/blob/master/LICENSE"
-    },
-    {
         "name": "usb",
-        "version": "2.15.0",
+        "version": "2.16.0",
         "spdx": "MIT",
         "url": "https://github.com/node-usb/node-usb",
         "license": "https://github.com/node-usb/node-usb/blob/master/LICENSE"
@@ -112,18 +98,11 @@
         "license": "https://github.com/microsoft/vscode-uri/blob/main/LICENSE.md"
     },
     {
-        "name": "websocket-stream",
-        "version": "5.5.2",
-        "spdx": "BSD-2-Clause",
-        "url": "https://github.com/max-mapper/websocket-stream",
-        "license": "https://github.com/max-mapper/websocket-stream/blob/master/LICENSE"
-    },
-    {
-        "name": "webview-ui-toolkit",
-        "version": "1.4.0",
+        "name": "ws",
+        "version": "8.18.3",
         "spdx": "MIT",
-        "url": "https://github.com/microsoft/vscode-webview-ui-toolkit",
-        "license": "https://github.com/microsoft/vscode-webview-ui-toolkit/blob/main/LICENSE"
+        "url": "https://github.com/websockets/ws",
+        "license": "https://github.com/websockets/ws/blob/master/LICENSE"
     },
     {
         "name": "xml2js",

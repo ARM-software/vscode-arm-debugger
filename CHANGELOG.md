@@ -2,14 +2,49 @@
 
 ## [Unreleased]
 
+- Updates support for Visual Studio Code to version 1.73 or higher
+- Updates extension pack dependencies:
+    - Removes the `arm.cmsis-csolution` extension
+    - Adds the `arm.virtual-hardware` extension
+
+- Introduces quick fix support for deprecated configuration fields
+- Improves run and debug configurations:
+    - Adds a deprecation message for the `program` field in `launch.json` and `tasks.json` configuration files
+    - Replaces `program` with `programs` and updates the field type to an array of strings
+    - Implements a new command, `arm-debugger.getApplicationFiles`, to retrieve all `**/*.{axf|elf}` files in the working directory for run and debug configurations
+    - Updates valid values for the `programMode` field to `flash` and `ram` for run and debug configurations
+    - Updates CMSIS extension support for `arm-debugger` and `arm-debugger.flash` configurations:
+        - Changes the default command for the `cmsisPack` from `cmsis-csolution.getTargetPack` to `cmsis-csolution.getDfpName`
+        - Replaces all references of `cmsis-csolution.getBinaryFile` with `arm-debugger.getApplicationFile`
+        - Adds wildcard `*` support for the `connectionAddress` field for run configuration
+
+    - Updates the `arm-debugger.configdb` debug configuration: 
+        - Introduces the `model_params_file` field, to allow model parameters to be entered separately from `model_params`
+        - Changes the default value of the `resetAfterConnect` field to true when the user selects an FVP `cdbEntry`
+        - Introduces the `programMode` field
+
+- Improves the Run and Debug Configuration editors:
+    - Refines the clarity and consistency of user-facing content
+    - Fixes configuration duplication when the `name`/`label` fields are missing
+    - Enhances model parameter handling by adding **Clear** and **Revert** buttons for the `arm-debugger.configdb` configuration
+
+- Improves the debugging process:
+    - Handles breakpoints on lines that do not map to source code
+    - Fixes the registers tree view when a core has more than one type of register value
+    - Fixes loss of focus in the **Debug Console** when running a command
+
+- Improves **Arm Debugger** engine handling:
+    - Uses the full path to the Arm Debugger engine provided by the Arm Tools Extension Manager
+    - Stops any running instance of the Arm Debugger server when changing the **Arm-debugger: Logging Verbosity** setting
+
+## 1.6.0
+
 - Implements code lenses for the `launch.json` and `tasks.json` configuration files
 - Improves the **Run Configuration** and **Debug Configuration** editors for UI and UX components
 - Improves the run and debug connection flows:
-
     - Introduces a quick pick menu when creating a new configuration
     - Improves layout in the **Run Configuration** and **Debug Configuration** editors
     - Aligns configuration fields with Arm Debugger terminology:
-
         - `probeType` → `connectionType`
         - `serialNumber` → `connectionAddress`
         - `debugFrom` → `runControl`
