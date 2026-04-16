@@ -2,6 +2,50 @@
 
 ## [Unreleased]
 
+- Known issue on Linux: When using Visual Studio Code `1.111.0` with the **Arm Device Manager** extension, **Arm Debugger** might not function correctly. **Workaround**: Enable the Device Manager **Use Extension Host** setting (`device-manager.useExtensionHost`) to restore partial functionality and avoid blocking your workflow. **Recommendation**: Downgrade Visual Studio Code to an earlier version until further notice.
+
+- Improves the **Arm Debugger** engine handling:
+    - Starts the **Arm Debugger** engine when the extension activates for version 6.9.0 or later. For versions earlier than 6.9.0, the engine does not start. Upgrade Arm Debugger to a supported version.
+    - Stops the **Arm Debugger** engine when the extension deactivates
+    - Implements user notifications when changing extension settings that affect the **Arm Debugger** engine:
+        - **Logging Verbosity** (`arm-debugger.loggingVerbosity`)
+        - **Configuration Database: Additional Locations** (`arm-debugger.configurationDatabase.additionalLocations`)
+        - **Debugger Path** (`arm-debugger.debuggerPath`)
+    - Implements a status bar indicator for a running **Arm Debugger** engine
+    - Improves the status bar indicator that displays when the **Arm Debugger** engine is not installed
+    - Implements a new pre-debug connection communication protocol with the **Arm Debugger** engine
+    - Improves the debug connection startup time using the **Arm Debugger** engine
+
+- Validates the value you enter for the **Debugger Path** (`arm-debugger.debuggerPath`) setting
+
+- Deprecated fields:
+    - Removes the deprecated `address` configuration field from the attach configuration
+    - Removes the deprecated `program` configuration field from the run and debug configurations
+    - Deprecates the `inheritsFromTask` and `inheritsFromDebug` configuration fields for the run and debug configurations
+
+- Improves debug operations and sessions:
+    - Improves the **Call Stack** view for multi core debug connections
+    - Improves the handling and logging of debug session shutdown errors
+    - Improves the **Registers** tree view
+    - Improves debug connection error messages and logging
+    - Fixes duplicate breakpoints
+    - Improves the **Functions** view:
+        - Adds support for DWARFv5
+        - Fixes sorting
+        - Adds filtering
+        - Improves **Go to Source**
+        - Improves function breakpoints
+
+- Improves UI components:
+    - Fixes the disabled state of the dropdown component in the **Debug Configuration** visual editor
+
+- Enables OS awareness for debug configurations:
+    - Adds the **OS Awareness** section in the **Debug Configuration** visual editor
+    - Adds the **Target OS** (`targetOs`) configuration field for debug configurations
+    - Displays OS details when you select an OS
+
+## 1.8.0
+
 - Updates support for Visual Studio Code to version 1.73 or higher
 - Updates extension pack dependencies:
     - Removes the `arm.cmsis-csolution` extension
@@ -18,7 +62,7 @@
         - Replaces all references of `cmsis-csolution.getBinaryFile` with `arm-debugger.getApplicationFile`
         - Adds wildcard `*` support for the `connectionAddress` field for run configuration
 
-    - Updates the `arm-debugger.configdb` debug configuration: 
+    - Updates the `arm-debugger.configdb` debug configuration:
         - Introduces the `model_params_file` field, to allow model parameters to be entered separately from `model_params`
         - Changes the default value of the `resetAfterConnect` field to true when the user selects an FVP `cdbEntry`
         - Introduces the `programMode` field

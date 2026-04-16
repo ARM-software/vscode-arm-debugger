@@ -1,7 +1,7 @@
 [
     {
         "name": "@vscode/codicons",
-        "version": "0.0.39",
+        "version": "0.0.44",
         "spdx": "MIT",
         "url": "https://github.com/microsoft/vscode-codicons",
         "license": "https://github.com/microsoft/vscode-codicons/blob/main/LICENSE-CODE"
@@ -43,21 +43,21 @@
     },
     {
         "name": "react",
-        "version": "19.1.1",
+        "version": "19.2.4",
         "spdx": "MIT",
         "url": "https://github.com/facebook/react",
         "license": "https://github.com/facebook/react/blob/main/LICENSE"
     },
     {
         "name": "react-dom",
-        "version": "19.1.1",
+        "version": "19.2.4",
         "spdx": "MIT",
         "url": "https://github.com/facebook/react",
         "license": "https://github.com/facebook/react/blob/main/LICENSE"
     },
     {
         "name": "usb",
-        "version": "2.16.0",
+        "version": "2.17.0",
         "spdx": "MIT",
         "url": "https://github.com/node-usb/node-usb",
         "license": "https://github.com/node-usb/node-usb/blob/master/LICENSE"
@@ -85,7 +85,7 @@
     },
     {
         "name": "vscode-messenger",
-        "version": "0.5.1",
+        "version": "0.6.0",
         "spdx": "MIT",
         "url": "https://github.com/TypeFox/vscode-messenger",
         "license": "https://github.com/TypeFox/vscode-messenger/blob/main/LICENSE"
@@ -99,7 +99,7 @@
     },
     {
         "name": "ws",
-        "version": "8.18.3",
+        "version": "8.19.0",
         "spdx": "MIT",
         "url": "https://github.com/websockets/ws",
         "license": "https://github.com/websockets/ws/blob/master/LICENSE"

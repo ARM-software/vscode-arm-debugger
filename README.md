@@ -2,7 +2,7 @@
 
 - [Overview](#overview)
 - [Prerequisites](#prerequisites)
-- [Install the Arm Debugger extension](#install-the-arm-debugger-extension)
+- [Install the Arm Debugger extension pack](#install-the-arm-debugger-extension-pack)
 - [Install the Arm Debugger engine and other tools with vcpkg](#install-the-arm-debugger-engine-and-other-tools-with-vcpkg)
 - [Define a run configuration and run a project on your board](#define-a-run-configuration-and-run-a-project-on-your-board)
 - [Define and start a debug connection](#define-and-start-a-debug-connection)
@@ -11,6 +11,7 @@
         - [CMSIS-Pack device option](#cmsis-pack-device-option)
     - [Work with a virtual target](#work-with-a-virtual-target)
     - [Attach to an existing connection](#attach-to-an-existing-connection)
+- [OS awareness](#os-awareness)
 - [Limitations](#limitations)
 - [Submit feedback or report issues](#submit-feedback-or-report-issues)
 
@@ -18,18 +19,18 @@
 
 | Badge           | Status                                                                                                                                                           |
 | --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Maintainability | [![Maintainability](https://qlty.sh/badges/be5d1912-6185-4375-bcbf-fa0804ea034b/maintainability.png)](https://qlty.sh/gh/Arm-Debug/projects/vscode-arm-debugger) |
-| Code Coverage   | [![Code Coverage](https://qlty.sh/badges/be5d1912-6185-4375-bcbf-fa0804ea034b/test_coverage.png)](https://qlty.sh/gh/Arm-Debug/projects/vscode-arm-debugger)     |
+| Maintainability | ![Maintainability](https://qlty.sh/badges/be5d1912-6185-4375-bcbf-fa0804ea034b/maintainability.png)|
+| Code Coverage   | ![Code Coverage](https://qlty.sh/badges/be5d1912-6185-4375-bcbf-fa0804ea034b/test_coverage.png)|
 
 ## Overview
 
-The Arm® Debugger extension allows you to debug and optimize software running on Arm-based processors. You can use the extension as a standalone tool or integrate it into your existing toolchain. It is also compatible with other extensions included in the [Keil Studio Pack](https://marketplace.visualstudio.com/items?itemName=Arm.keil-studio-pack).
+The Arm® Debugger extension allows you to debug and optimize software running on Arm-based processors. You can use the extension as a standalone tool or integrate it into your existing toolchain. It is also compatible with other extensions included in the Arm® [Keil® Studio Pack](https://marketplace.visualstudio.com/items?itemName=Arm.keil-studio-pack).
 
-The extension provides access to the Arm Debugger engine (armdbg) by implementing the [Microsoft Debug Adapter Protocol (DAP)](https://microsoft.github.io/debug-adapter-protocol//).
+The extension provides access to the Arm Debugger engine (armdbg) by implementing the [Microsoft Debug Adapter Protocol (DAP)](https://microsoft.github.io/debug-adapter-protocol).
 
 The Arm Debugger engine supports connections to the following targets:
 
-- Physical targets: Either through external hardware, for example, Arm ULINK™ or DSTREAM debug probes, or through low-cost on-board hardware, for example, ST-Link or CMSIS-DAP
+- Physical targets: Either through external hardware, for example, Arm® Keil® ULINK™ or DSTREAM debug probes, or through low-cost on-board hardware, for example, ST-Link or CMSIS-DAP
 
 - Virtual targets: Using Fixed Virtual Platform (FVP) models
 
@@ -53,6 +54,8 @@ The Arm Debugger extension allows you to:
 
 - Access the [CLI](https://developer.arm.com/documentation/101471/latest/Arm-Debugger-commands) using the Debug Console
 
+- Inspect OS threads, their call stacks, and execution context during a debug session with OS awareness
+
 ### Supported debug connections
 
 The Arm Debugger engine supports debug connections based on the following information:
@@ -67,9 +70,9 @@ For a complete list of supported architectures, processors, Fixed Virtual Platfo
 
 ## Prerequisites
 
-You must install the Arm Debugger extension (identifier: `arm.arm-debugger`).
+You must install the Arm Debugger extension pack (identifier: `arm.arm-debugger`).
 
-The following extensions are installed automatically alongside Arm Debugger:
+The Arm Debugger extension automatically installs the following extensions:
 
 - Arm Tools Environment Manager (identifier: `arm.environment-manager`)
 
@@ -87,19 +90,19 @@ To debug a program running on an FVP model, you must have FVPs installed locally
 
 You must have an example project ready to use. You can create an example from scratch. Alternatively, if you are working with CMSIS, you can start from one of the official examples available on [Arm Examples](https://github.com/Arm-Examples) or [keil.arm.com](https://www.keil.arm.com/boards/). These examples contain pre-configured `vcpkg-configuration.json`, `tasks.json`, and `launch.json` files.
 
-## Install the Arm Debugger extension
+## Install the Arm Debugger extension pack
 
 1. Open Visual Studio Code Desktop and click the **Extensions** icon ![Extensions icon](https://github.com/ARM-software/vscode-arm-debugger/raw/main/docs/images/extensions-icon.png) in the Activity Bar to open the **Extensions** view.
 
-1. Search for **Arm Debugger** and click **Install**.
+1. Search for **Arm Debugger** and click the **Install** button.
 
-    Arm Debugger and all the extensions contained in the Arm Debugger extension pack are installed at the same time.
+    The Arm Debugger extension installs all extensions in the extension pack at the same time.
 
 ## Install the Arm Debugger engine and other tools with vcpkg
 
 The Arm Tools Environment Manager extension downloads, installs, and manages software development tools, including the Arm Debugger engine, using [Microsoft vcpkg](https://vcpkg.io/en/index.html) artifacts. Arm Tools Environment Manager adds a `vcpkg-configuration.json` manifest file to your project and uses this file to acquire and activate the tools needed to set up your development environment.
 
-Some tools, like the Arm Debugger engine, require a [user-based licensing (UBL)](https://developer.arm.com//Tools%20and%20Software/User-based%20Licensing) license. You must activate the license with the **Arm License Management Utility** available with Arm Tools Environment Manager.
+Some tools, like the Arm Debugger engine, require a [User-based Licensing (UBL)](https://developer.arm.com//Tools%20and%20Software/User-based%20Licensing) license. You must activate the license with the **Arm License Management Utility** available with Arm Tools Environment Manager.
 
 See the [Arm Tools Environment Manager README](https://marketplace.visualstudio.com/items?itemName=Arm.environment-manager) for more details.
 
@@ -107,15 +110,15 @@ To install the Arm Debugger engine and other tools:
 
 1. Open the project that you want to work on.
 
-1. Click the **Arm Tools** status bar item and select **Add Arm Tools Configuration to Workspace** in the drop-down list at the top of the window.
+1. Click the **Arm Tools** status bar indicator and select **Add Arm Tools Configuration to Workspace** in the drop-down list at the top of the window.
 
     A visual editor opens where you can select the tools you need.
 
 1. Select the latest version available for **Arm Debugger** and select the other tools you require.
 
-    A `vcpkg-configuration.json` file is added to your project and the tools that you selected are included in the file. You can also update the file manually. Click the `vcpkg-configuration.json` tab to display the file contents.
+    The extension adds a `vcpkg-configuration.json` file to your project and includes the tools that you selected in the file. You can also update the file manually. Click the `vcpkg-configuration.json` tab to display the file contents.
 
-    For example, the following file activates the Arm Debugger engine.
+    For example, the following file activates the Arm Debugger engine. In this configuration, vcpkg resolves `*` to the latest Arm Debugger version available.
 
     ```json
     {
@@ -127,16 +130,16 @@ To install the Arm Debugger engine and other tools:
             }
         ],
         "requires": {
-            "arm:debuggers/arm/armdbg": "6.5.0"
+            "arm:debuggers/arm/armdbg": "*"
         }
     }
     ```
 
 1. Save your changes.
 
-    The Arm Tools Environment Manager extension activates the workspace and downloads the tools specified in the `vcpkg-configuration.json` file. After installation, tools are available on the PATH.
+    The Arm Tools Environment Manager extension activates the workspace and downloads the tools specified in the `vcpkg-configuration.json` file. After installation, tools are available on the PATH for the activated workspace in Visual Studio Code.
 
-1. The status bar shows **No Arm License** if no valid UBL license is active. In this case, click **No Arm License** and select **Activate or manage Arm licenses** in the drop-down list at the top of the window.
+1. The status bar shows **No Arm License** if no valid user-based license is active. In this case, click **No Arm License** and select **Activate or manage Arm licenses** in the drop-down list at the top of the window.
 
 1. Manage your license with the **Arm License Management Utility**.
 
@@ -146,7 +149,7 @@ To install the Arm Debugger engine and other tools:
 
 To flash a program onto your hardware, you must first configure a task. Visual Studio Code uses a `tasks.json` configuration file to run projects. Use the **Run Configuration** visual editor to select options. Alternatively, you can add the configuration manually in the `tasks.json` file.
 
-**Note**: In this procedure, it is assumed that you have already built either a PDSC file or an AXF or ELF file using your toolchain.
+**Note**: This procedure assumes that you already built either a PDSC file or an AXF or ELF file using your toolchain.
 
 To define a run configuration and run a project on your board:
 
@@ -167,7 +170,6 @@ To define a run configuration and run a project on your board:
                 "cmsisPack": "${command:cmsis-csolution.getDfpName}",
                 "deviceName": "${command:cmsis-csolution.getDeviceName}",
                 "processorName": "${command:cmsis-csolution.getProcessorName}",
-                "problemMatcher": [],
                 "label": "arm-debugger.flash: Flash Device"
             }
         ]
@@ -175,9 +177,9 @@ To define a run configuration and run a project on your board:
     ```
 
 1. To open the **Run Configuration** visual editor, either:
-    - Click the **Open in editor** code lens above the configuration. Code lenses are enabled by default with the **Enable Code Lens** Arm Debugger setting.
+    - Click the **Open in editor** code lens above the configuration. The **Enable Code Lens** Arm Debugger setting enables code lenses by default.
 
-    - Click **Open Arm Run Configuration** ![Run Configuration icon](https://github.com/ARM-software/vscode-arm-debugger/raw/main/docs/images/run-debug-config-icon.png) in the top right-hand corner of the text editor.
+    - Click the **Open Arm Run Configuration** button ![Run Configuration icon](https://github.com/ARM-software/vscode-arm-debugger/raw/main/docs/images/run-debug-config-icon.png) in the top right-hand corner of the text editor.
 
     ![Run Configuration editor](https://github.com/ARM-software/vscode-arm-debugger/raw/main/docs/images/run-config-editor.png)
 
@@ -209,11 +211,11 @@ To define a run configuration and run a project on your board:
             - You can also select the serial number of the active device in the drop-down list. Alternatively, type a connection address or serial number manually.
 
     - **Application** section:
-        - **Program Files**: Click **Add File** to point to an AXF or ELF file. You can add as many files as you need. The Arm Debugger extension uses the files in the order in which you added them. You can also click **Detect** to use `${command:arm-debugger.getApplicationFile}`. This command detects the AXF or ELF file to use or offers a selection of files available if several AXF or ELF files are present in your workspace. Alternatively, you can click **Detect All Files** to use `${command:arm-debugger.getApplicationFiles}`. This command detects all the AXF or ELF files to use that are present in your workspace.
+        - **Program Files**: Click the **Add File** button to point to an AXF or ELF file. You can add as many files as you need. The Arm Debugger extension uses the files in the order in which you added them. You can also click the **Detect** button to use `${command:arm-debugger.getApplicationFile}`. This command detects the AXF or ELF file to use or offers a selection of files available if several AXF or ELF files are present in your workspace. Alternatively, you can click the **Detect All Files** button to use `${command:arm-debugger.getApplicationFiles}`. This command detects all the AXF or ELF files to use that are present in your workspace.
 
 1. Save your changes.
 
-    The options that you select in the editor are added in the `tasks.json` file.<!-- Links to standalone guide to add: For information on more options, see "Run configuration options in the visual editor" and "Arm Debugger run configuration options".-->
+    The editor adds the options that you select to the `tasks.json` file.<!-- Links to standalone guide to add: For information on more options, see "Run configuration options in the visual editor" and "Arm Debugger run configuration options".-->
 
 1. To run the project on your board:
     - Open the Command Palette. Search for `Tasks: Run Task` and then select it.
@@ -224,7 +226,7 @@ To define a run configuration and run a project on your board:
 
     - If you are using a multicore device and you did not specify a `"processorName"` in the `tasks.json` file, select the appropriate processor for your device in the **Select a processor** drop-down list at the top of the window.
 
-    The project is downloaded to the board and starts running.
+    Visual Studio Code downloads the project to the board and starts it.
 
 1. Check the download progress in the **Terminal** tab.
 
@@ -232,25 +234,27 @@ To define a run configuration and run a project on your board:
 
 Visual Studio Code uses a `launch.json` configuration file to define debugger settings. You can use the **Debug Configuration** visual editor to choose configuration options, or manually edit the `launch.json` file.
 
+For more information about inspecting OS threads during a debug session, see [OS awareness](#os-awareness).
+
 ### Arm Debugger Launch
 
 With the **Arm Debugger Launch** option, you can start your program in debug mode using various configurations that support both physical and virtual targets.
 
 #### Physical targets
 
-Select **Hardware debug connection**, then select:
+Select the **Hardware debug connection** option, then select:
 
-- **Built-in platform**: Connect to an off-the-shelf development board or a platform defined in the Arm Debugger configuration database. This option provides a pre-defined, integrated debug setup, and adds an `"arm-debugger.configdb"` configuration with a `"launch"` request to the `launch.json` file.
+- **Built-in platform** option: Connect to an off-the-shelf development board or a platform defined in the Arm Debugger configuration database. This option provides a pre-defined, integrated debug setup, and adds an `"arm-debugger.configdb"` configuration with a `"launch"` request to the `launch.json` file.
 
-- **CMSIS-Pack device**: Connect using a CMSIS-Pack, specifically a Device Family Pack (DFP) provided by silicon vendors. This method requires a `*.csolution.yml` file specifying the target device, compiler, and debug settings. It adds an `"arm-debugger"` configuration with a `"launch"` request to the `launch.json` file.
+- **CMSIS-Pack device** option: Connect using a CMSIS-Pack, specifically a Device Family Pack (DFP) provided by silicon vendors. This method requires a `*.csolution.yml` file specifying the target device, compiler, and debug settings. It adds an `"arm-debugger"` configuration with a `"launch"` request to the `launch.json` file.
 
 #### Virtual targets
 
-Select **Model debug connection** to use Fixed Virtual Platform (FVP) models to debug virtual targets. This adds an `"arm-debugger.configdb"` configuration with a `"launch"` request to the `launch.json` file.
+Select the **Model debug connection** option to use Fixed Virtual Platform (FVP) models to debug virtual targets. This adds an `"arm-debugger.configdb"` configuration with a `"launch"` request to the `launch.json` file.
 
 ### Arm Debugger Attach
 
-With the **Arm Debugger Attach** option, you can attach to a debug connection that is already established. This adds an `"arm-debugger"` configuration with an `"attach"` request to the `launch.json` file. Unlike launch configurations, you must configure this type manually and cannot use the visual editor.
+With the **Arm Debugger Attach** option, you can attach to an existing debug connection. This adds an `"arm-debugger"` configuration with an `"attach"` request to the `launch.json` file. Unlike launch configurations, you must configure this type manually and cannot use the visual editor.
 
 ### Work with a physical target
 
@@ -262,9 +266,9 @@ To define and start a debug connection:
 
 1. Select `Arm Debugger` in the drop-down list that displays.
 
-1. Select **Arm Debugger Launch** > **Hardware debug connection** > **Built-in platform**.
+1. Select **Arm Debugger Launch** > **Hardware debug connection** > **Built-in platform** option.
 
-1. Validate the name of the configuration and press **Enter**.
+1. Check the name of the configuration and press the Enter key.
 
     Visual Studio Code creates a `launch.json` file in the `.vscode` folder of your project with the following default configuration:
 
@@ -287,9 +291,9 @@ To define and start a debug connection:
     ```
 
 1. To open the **Debug Configuration** visual editor, either:
-    - Click the **Open in editor** code lens above the configuration. Code lenses are enabled by default with the **Enable Code Lens** Arm Debugger setting.
+    - Click the **Open in editor** code lens above the configuration. The **Enable Code Lens** Arm Debugger setting enables code lenses by default.
 
-    - Click **Open Arm Debug Configuration** ![Debug Configuration icon](https://github.com/ARM-software/vscode-arm-debugger/raw/main/docs/images/run-debug-config-icon.png) in the top right-hand corner of the text editor.
+    - Click the **Open Arm Debug Configuration** button ![Debug Configuration icon](https://github.com/ARM-software/vscode-arm-debugger/raw/main/docs/images/run-debug-config-icon.png) in the top right-hand corner of the text editor.
 
     ![Debug Configuration editor](https://github.com/ARM-software/vscode-arm-debugger/raw/main/docs/images/debug-config-editor-configdb.png)
 
@@ -309,10 +313,10 @@ To define and start a debug connection:
 
             - `SWD`: Use the SWD debug port mode.
 
-        - **Bare Metal Debug** > **Clock Speed**: The maximum clock frequency for the debug communication. The clock frequency is the speed at which data is transferred between the debugger and the target device during debugging operations. The frequency actually used depends on the capabilities of the debug probe and might be reduced to the next supported frequency.
+        - **Bare Metal Debug** > **Clock Speed**: The maximum clock frequency for the debug communication. The clock frequency is the speed at which the debugger transfers data to the target device during debugging operations. The actual frequency depends on the capabilities of the debug probe, and the debugger might reduce it to the next supported frequency.
             - Default value: `auto`. With `auto`, the debugger decides which clock frequency to use based on the connected target device.
 
-            - Other possible values: `50MHz`, `33MHz`, `25MHz`, `20MHz`, `10MHz`, `5MHz`, `2MHz`, `1MHz`, `500kHz`, `200kHz`, `100kHz`, `50kHz`, `20kHz`, `10kHz`, `5kHz`.
+            - Other possible values: `20kHz`, `100kHz`, `500kHz`, `1MHz`, `2MHz`, `5MHz`, `10MHz`, `20MHz`, `50MHz`.
 
         - **Bare Metal Debug** > **Connection Address**: Select the serial number of the connected debug probe or debug unit.
             - Select `auto` in the drop-down list. With `auto`, the Arm Debugger extension uses the serial number of the active device in the Arm Device Manager extension by default. The Arm Debugger extension adds the `"${command:device-manager.getSerialNumber}"` command in the JSON file for `"connectionAddress"`.
@@ -320,18 +324,18 @@ To define and start a debug connection:
             - You can also enter the serial number or connection address of the active device.
 
     - **Application** section:
-        - **Program Files**: Click **Add File** to point to an AXF or ELF file. You can add as many files as you need. The Arm Debugger extension uses the files in the order in which you added them. You can also click **Detect** to use `${command:arm-debugger.getApplicationFile}`. This command detects the AXF or ELF file to use or offers a selection of files available if several AXF or ELF files are present in your workspace. Alternatively, you can click **Detect All Files** to use `${command:arm-debugger.getApplicationFiles}`. This command detects all the AXF or ELF files to use that are present in your workspace.
+        - **Program Files**: Click the **Add File** button to point to an AXF or ELF file. You can add as many files as you need. The Arm Debugger extension uses the files in the order in which you added them. You can also click the **Detect** button to use `${command:arm-debugger.getApplicationFile}`. This command detects the AXF or ELF file to use or offers a selection of files available if several AXF or ELF files are present in your workspace. Alternatively, you can click the **Detect All Files** button to use `${command:arm-debugger.getApplicationFiles}`. This command detects all the AXF or ELF files to use that are present in your workspace.
 
     - **Debugger** section:
-        - **Run Control**: As you have selected an AXF or ELF file in **Program Files**, select **Debug From Entrypoint** or **Debug From Symbol**. The debugger can either start from the entry point of the program or run until it reaches a specified symbol (defaults to main) before pausing.
+        - **Run Control**: As you have selected an AXF or ELF file in **Program Files**, select the **Debug From Entry Point** or **Debug From Symbol** option. The debugger can either start from the entry point of the program or run until it reaches a specified symbol (defaults to `main`) before pausing.
 
-        **Note**: The **Connect Only** option is set by default and does not require you to select a file in **Program Files**.
+        **Note**: Arm Debugger sets the **Connect Only** option by default and does not require you to select a file in **Program Files**.
 
 1. Save your changes.
 
-    The options that you select in the editor are added in the `launch.json` file.<!-- Links to standalone guide to add: For information on other options, see the **Launch ConfigDB configuration for physical targets** options in "Debug configuration options in the visual editor" and "Arm Debugger ConfigDB debug configuration options".-->
+    The editor adds the options that you select to the `launch.json` file.<!-- Links to standalone guide to add: For information on other options, see the **Launch ConfigDB configuration for physical targets** options in "Debug configuration options in the visual editor" and "Arm Debugger ConfigDB debug configuration options".-->
 
-1. To start a debug session, click **Start debugging** in the top right-hand corner of the **Debug Configuration** visual editor.
+1. To start a debug session, click the **Start debugging** button in the top right-hand corner of the **Debug Configuration** visual editor.
 
     The debug session starts. The debugger stops at the location that you specified in **Run Control**.
 
@@ -345,9 +349,9 @@ To define and start a debug connection:
 
 1. Select `Arm Debugger` in the drop-down list that displays.
 
-1. Select **Arm Debugger Launch** > **Hardware debug connection** > **CMSIS-Pack device**.
+1. Select **Arm Debugger Launch** > **Hardware debug connection** > **CMSIS-Pack device** option.
 
-1. Validate the name of the configuration and press **Enter**.
+1. Check the name of the configuration and press the Enter key.
 
     Visual Studio Code creates a `launch.json` file in the `.vscode` folder of your project with the following default configuration:
 
@@ -375,9 +379,9 @@ To define and start a debug connection:
     ```
 
 1. To open the **Debug Configuration** visual editor, either:
-    - Click the **Open in editor** code lens above the configuration. Code lenses are enabled by default with the **Enable Code Lens** Arm Debugger setting.
+    - Click the **Open in editor** code lens above the configuration. The **Enable Code Lens** Arm Debugger setting enables code lenses by default.
 
-    - Click **Open Arm Debug Configuration** ![Debug Configuration icon](https://github.com/ARM-software/vscode-arm-debugger/raw/main/docs/images/run-debug-config-icon.png) in the top right-hand corner of the text editor.
+    - Click the **Open Arm Debug Configuration** button ![Debug Configuration icon](https://github.com/ARM-software/vscode-arm-debugger/raw/main/docs/images/run-debug-config-icon.png) in the top right-hand corner of the text editor.
 
     ![Debug Configuration editor](https://github.com/ARM-software/vscode-arm-debugger/raw/main/docs/images/debug-config-editor-cmsis.png)
 
@@ -426,18 +430,18 @@ To define and start a debug connection:
             - You can also select the serial number of the active device in the drop-down list. Alternatively, type a connection address or serial number manually.
 
     - **Application** section:
-        - **Program Files**: Click **Add File** to point to an AXF or ELF file. You can add as many files as you need. The Arm Debugger extension uses the files in the order in which you added them. You can also click **Detect** to use `${command:arm-debugger.getApplicationFile}`. This command detects the AXF or ELF file to use or offers a selection of files available if several AXF or ELF files are present in your workspace. Alternatively, you can click **Detect All Files** to use `${command:arm-debugger.getApplicationFiles}`. This command detects all the AXF or ELF files to use that are present in your workspace.
+        - **Program Files**: Click the **Add File** button to point to an AXF or ELF file. You can add as many files as you need. The Arm Debugger extension uses the files in the order in which you added them. You can also click the **Detect** button to use `${command:arm-debugger.getApplicationFile}`. This command detects the AXF or ELF file to use or offers a selection of files available if several AXF or ELF files are present in your workspace. Alternatively, you can click the **Detect All Files** button to use `${command:arm-debugger.getApplicationFiles}`. This command detects all the AXF or ELF files to use that are present in your workspace.
 
     - **Debugger** section:
-        - **Run Control**: As you have selected an AXF or ELF file in **Program Files**, select **Debug From Entrypoint** or **Debug From Symbol**. The debugger can either start from the entry point of the program or run until it reaches a specified symbol (defaults to main) before pausing.
+        - **Run Control**: As you have selected an AXF or ELF file in **Program Files**, select the **Debug From Entry Point** or **Debug From Symbol** option. The debugger can either start from the entry point of the program or run until it reaches a specified symbol (defaults to `main`) before pausing.
 
         **Note**: The **Connect Only** option does not require you to select a file in **Program Files**.
 
 1. Save your changes.
 
-    The options that you select in the editor are added in the `launch.json` file.<!-- Links to standalone guide to add: For information on other options, see the **Launch configuration** options in "Debug configuration options in the visual editor" and "Arm Debugger debug configuration options".-->
+    The editor adds the options that you select to the `launch.json` file.<!-- Links to standalone guide to add: For information on other options, see the **Launch configuration** options in "Debug configuration options in the visual editor" and "Arm Debugger debug configuration options".-->
 
-1. To start a debug session, click **Start debugging** in the top right-hand corner of the **Debug Configuration** visual editor.
+1. To start a debug session, click the **Start debugging** button in the top right-hand corner of the **Debug Configuration** visual editor.
 
     The debug session starts. The debugger stops at the location that you specified in **Run Control**.
 
@@ -449,17 +453,17 @@ To define and start a debug connection:
 
 To define and start a debug connection:
 
-1. To debug a virtual target using FVPs, you must have the models installed locally. The list of available FVPs depends on the version of Arm Debugger specified in the `vcpkg-configuration.json` file for your project. Arm Debugger includes a configuration database that provides access to these FVPs.
+1. To debug a virtual target using FVPs, you must install the models locally. The list of available FVPs depends on the version of Arm Debugger specified in the `vcpkg-configuration.json` file for your project. Arm Debugger includes a configuration database that provides access to these FVPs.
 
-    **Note**: For Cortex&reg;-M based on Fast Models, add `"arm:models/arm/avh-fvp": "<version>"` in the `"requires":` section of the `vcpkg-configuration.json` file for your project.
+    **Note**: For Arm® Cortex®-M based on Fast Models, add `"arm:models/arm/avh-fvp": "<version>"` in the `"requires":` section of the `vcpkg-configuration.json` file for your project.
 
 1. Open the Command Palette. Search for `Debug: Add Configuration...` and then select it.
 
 1. Select `Arm Debugger` in the drop-down list that displays.
 
-1. Select **Arm Debugger Launch** > **Model debug connection**.
+1. Select **Arm Debugger Launch** > **Model debug connection** option.
 
-1. Validate the name of the configuration and press **Enter**.
+1. Check the name of the configuration and press the Enter key.
 
     Visual Studio Code creates a `launch.json` file in the `.vscode` folder of your project with the following default configuration:
 
@@ -474,16 +478,16 @@ To define and start a debug connection:
                 "name": "Connect to Model",
                 "type": "arm-debugger.configdb",
                 "request": "launch",
-                "cdbEntry": "<configuration database string of model to connect>"
+                "cdbEntry": "<Configuration database string of model to connect>"
             }
         ]
     }
     ```
 
 1. To open the **Debug Configuration** visual editor, either:
-    - Click the **Open in editor** code lens above the configuration. Code lenses are enabled by default with the **Enable Code Lens** Arm Debugger setting.
+    - Click the **Open in editor** code lens above the configuration. The **Enable Code Lens** Arm Debugger setting enables code lenses by default.
 
-    - Click **Open Arm Debug Configuration** ![Debug Configuration icon](https://github.com/ARM-software/vscode-arm-debugger/raw/main/docs/images/run-debug-config-icon.png) in the top right-hand corner of the text editor.
+    - Click the **Open Arm Debug Configuration** button ![Debug Configuration icon](https://github.com/ARM-software/vscode-arm-debugger/raw/main/docs/images/run-debug-config-icon.png) in the top right-hand corner of the text editor.
 
     ![Debug Configuration editor](https://github.com/ARM-software/vscode-arm-debugger/raw/main/docs/images/debug-config-editor-configdb-fvp.png)
 
@@ -492,21 +496,21 @@ To define and start a debug connection:
         - **Select Target**: Select the FVP that you want to use (for example, `MPS2_Cortex_M4`), then select a processor (for example, `Cortex-M4`). The list of available FVPs depends on the version of Arm Debugger specified in the `vcpkg-configuration.json` file.
 
     - **Application** section:
-        - **Program Files**: Click **Add File** to point to an AXF or ELF file. You can add as many files as you need. The Arm Debugger extension uses the files in the order in which you added them. You can also click **Detect** to use `${command:arm-debugger.getApplicationFile}`. This command detects the AXF or ELF file to use or offers a selection of files available if several AXF or ELF files are present in your workspace. Alternatively, you can click **Detect All Files** to use `${command:arm-debugger.getApplicationFiles}`. This command detects all the AXF or ELF files to use that are present in your workspace.
+        - **Program Files**: Click the **Add File** button to point to an AXF or ELF file. You can add as many files as you need. The Arm Debugger extension uses the files in the order in which you added them. You can also click the **Detect** button to use `${command:arm-debugger.getApplicationFile}`. This command detects the AXF or ELF file to use or offers a selection of files available if several AXF or ELF files are present in your workspace. Alternatively, you can click the **Detect All Files** button to use `${command:arm-debugger.getApplicationFiles}`. This command detects all the AXF or ELF files to use that are present in your workspace.
 
     - **Debugger** section:
-        - **Run Control**: As you have selected an AXF or ELF file in **Program Files**, select **Debug From Entrypoint** or **Debug From Symbol**. The debugger can either start from the entry point of the program or run until it reaches a specified symbol (defaults to main) before pausing.
+        - **Run Control**: As you have selected an AXF or ELF file in **Program Files**, select the **Debug From Entry Point** or **Debug From Symbol** option. The debugger can either start from the entry point of the program or run until it reaches a specified symbol (defaults to `main`) before pausing.
 
-        **Note**: The **Connect Only** option is set by default and does not require you to select a file in **Program Files**.
+        **Note**: Arm Debugger sets the **Connect Only** option by default and does not require you to select a file in **Program Files**.
 
 1. Save your changes.
 
-    The options you select in the editor are added in the `launch.json` file.<!-- Links to standalone guide to add: For information on more options, see the **Launch ConfigDB configuration for FVPs** options in "Debug configuration options in the visual editor" and "Arm Debugger ConfigDB debug configuration options".-->
+    The editor adds the options you select to the `launch.json` file.<!-- Links to standalone guide to add: For information on more options, see the **Launch ConfigDB configuration for FVPs** options in "Debug configuration options in the visual editor" and "Arm Debugger ConfigDB debug configuration options".-->
 
 1. To start a debug session:
     - If you are on a Mac, make sure Docker is running.
 
-    - Click **Start debugging** in the top right-hand corner of the **Debug Configuration** visual editor.
+    - Click the **Start debugging** button in the top right-hand corner of the **Debug Configuration** visual editor.
 
     The debug session starts. The debugger stops at the location that you specified in **Run Control**.
 
@@ -520,9 +524,9 @@ To attach to an existing connection:
 
 1. Select `Arm Debugger` in the drop-down list that displays.
 
-1. Select **Arm Debugger Attach**.
+1. Select the **Arm Debugger Attach** option.
 
-1. Validate the name of the configuration and press **Enter**.
+1. Check the name of the configuration and press the Enter key.
 
     Visual Studio Code creates a `launch.json` file in the `.vscode` folder of your project with the following default configuration:
 
@@ -537,7 +541,7 @@ To attach to an existing connection:
                 "name": "Arm Debugger (Attach)",
                 "type": "arm-debugger",
                 "request": "attach",
-                "address": "Websocket (ws://<host>:<port>) or socket (<host>:<port>) to connect to"
+                "debuggerAddress": "Websocket (ws://<host>:<port>) or socket (<host>:<port>) to connect to"
             }
         ]
     }
@@ -554,15 +558,46 @@ To attach to an existing connection:
 
     The extension attaches to the running debug connection.
 
+## OS awareness
+
+OS awareness enables Arm Debugger to interpret operating system (OS) information during a debug session. This feature is useful when you debug software running on an RTOS or an embedded Linux system.
+
+When you enable OS awareness, Arm Debugger can identify the threads that the OS creates and display them in the **Call Stack** view. Each thread displays with its own call stack, allowing you to understand what each thread is doing when the target stops.
+
+Depending on the OS and debugger support, you can:
+
+- View OS threads and their call stacks in the **Call Stack** view  
+- Identify which thread is currently executing  
+- See what other threads are doing (for example, running, waiting, or delayed) based on their call stacks  
+- Recognize OS activity such as delays, waits, or queue operations through RTOS functions that display in the stack (for example, `osDelay`, `osThreadFlagsWait`, or message queue APIs)
+
+You can select a thread in the **Call Stack** view to change the debugging context. When you select a thread, views such as **Variables** and **Registers** update to reflect the execution state of that thread.
+
+OS awareness enables you to debug multitasking software at the OS level rather than only at the processor level, without manually inspecting raw memory.
+
+### Supported operating systems
+
+OS awareness is available for the following operating systems:
+
+- FreeRTOS
+- Keil® CMSIS-RTOS RTX
+- NXP MQX
+- Nucleus
+- PikeOS
+- RTXC
+- ThreadX
+- Wind River VxWorks
+- eForce µC3 Compact
+- eForce µC3 Standard
+- embOS
+- μC/OS-II
+- μC/OS-III
+
+**Note**: OS awareness depends on the target processor architecture. Some operating systems are not supported on all architectures.
+
 ## Limitations
 
-Some capabilities of the Arm Debugger engine that are not yet exposed in Visual Studio Code include:
-
-- CoreSight™ trace
-
-- Symmetric and asymmetric multicore debug
-
-- RTOS awareness
+Arm® CoreSight™ trace is a capability of the Arm Debugger engine that is not yet exposed in Visual Studio Code.
 
 ## Submit feedback or report issues
 
